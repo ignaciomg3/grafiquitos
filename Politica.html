@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 p-4 md:p-12">
+    <header class="mb-8 md:mb-12">
+        <h1 class="text-3xl font-bold text-slate-800 mb-2">Análisis Político</h1>
+        <p class="text-slate-500">Métricas de opinión pública y distribución parlamentaria.</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <section class="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-slate-100">
+            <h2 class="text-lg md:text-xl font-bold mb-4">Aprobación de Gestión</h2>
+            <div class="h-64 w-full">
+                <canvas id="chartAprobacion"></canvas>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-slate-100">
+            <h2 class="text-lg md:text-xl font-bold mb-4">Composición del Congreso</h2>
+            <div class="h-64 w-full">
+                <canvas id="chartCongreso"></canvas>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.color = '#64748b';
+
+        new Chart(document.getElementById('chartAprobacion'), {
+            type: 'line',
+            data: {
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                datasets: [
+                    {
+                        label: 'Desaprueba',
+                        data: [45, 48, 52, 50, 47, 49],
+                        borderColor: '#ef4444',
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Aprueba',
+                        data: [42, 40, 38, 41, 45, 44],
+                        borderColor: '#3b82f6',
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+
+        new Chart(document.getElementById('chartCongreso'), {
+            type: 'pie',
+            data: {
+                labels: ['Oficialismo', 'Oposición Principal', 'Tercera Vía', 'Independientes'],
+                datasets: [{
+                    data: [120, 95, 30, 12],
+                    backgroundColor: ['#2e1065', '#fbbf24', '#0ea5e9', '#94a3b8'],
+                    borderWidth: 1
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    </script>
+</body>
+
+</html>

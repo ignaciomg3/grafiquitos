@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnología</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 p-4 md:p-12">
+    <header class="mb-8 md:mb-12">
+        <h1 class="text-3xl font-bold text-slate-800 mb-2">Adopción Tecnológica</h1>
+        <p class="text-slate-500">Métricas sobre el avance de nuevas tecnologías e IA.</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <section class="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-slate-100">
+            <h2 class="text-lg md:text-xl font-bold mb-4">Adopción de IA Generativa en Empresas</h2>
+            <div class="h-64 w-full">
+                <canvas id="chartAi"></canvas>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-slate-100">
+            <h2 class="text-lg md:text-xl font-bold mb-4">Dispositivos Conectados (IoT)</h2>
+            <div class="h-64 w-full">
+                <canvas id="chartIot"></canvas>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.color = '#64748b';
+
+        new Chart(document.getElementById('chartAi'), {
+            type: 'doughnut',
+            data: {
+                labels: ['A gran escala', 'Piloto', 'En evaluación', 'Sin planes'],
+                datasets: [{
+                    data: [25, 35, 30, 10],
+                    backgroundColor: ['#8b5cf6', '#a78bfa', '#c4b5fd', '#ede9fe'],
+                    borderWidth: 0
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+
+        new Chart(document.getElementById('chartIot'), {
+            type: 'line',
+            data: {
+                labels: ['2022', '2023', '2024', '2025', '2026'],
+                datasets: [{
+                    label: 'Miles de Millones',
+                    data: [13.1, 15.1, 17.5, 20.2, 23.4],
+                    borderColor: '#06b6d4',
+                    backgroundColor: 'rgba(6, 182, 212, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    </script>
+</body>
+
+</html>
