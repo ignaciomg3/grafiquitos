@@ -71,18 +71,24 @@
                         class="tab-inactive inline-flex items-center px-1 pb-2 sm:pt-1 sm:pb-0 text-sm transition-colors duration-200">
                         Economía
                     </button>
-                    <button onclick="changeTab('politica')" id="tab-politica"
-                        class="tab-inactive inline-flex items-center px-1 pb-2 sm:pt-1 sm:pb-0 text-sm transition-colors duration-200">
-                        Política
-                    </button>
+
                     <button onclick="changeTab('mercado-laboral')" id="tab-mercado-laboral"
                         class="tab-active inline-flex items-center px-1 pb-2 sm:pt-1 sm:pb-0 text-sm transition-colors duration-200">
                         Mercado Laboral
                     </button>
-                    <button onclick="changeTab('tecnologia')" id="tab-tecnologia"
+
+                    <button onclick="changeTab('puestos-demandados')" id="tab-puestos-demandados"
+                        class="tab-inactive inline-flex items-center px-1 pb-2 sm:pt-1 sm:pb-0 text-sm transition-colors duration-200">
+                        Puestos demandados
+                    </button>
+                    <!-- <button onclick="changeTab('tecnologia')" id="tab-tecnologia"
                         class="tab-inactive inline-flex items-center px-1 pb-2 sm:pt-1 sm:pb-0 text-sm transition-colors duration-200">
                         Tecnología
-                    </button>
+                    </button> -->
+                    <!-- <button onclick="changeTab('politica')" id="tab-politica"
+                        class="tab-inactive inline-flex items-center px-1 pb-2 sm:pt-1 sm:pb-0 text-sm transition-colors duration-200">
+                        Política
+                    </button> -->
                 </nav>
             </div>
         </div>
@@ -118,16 +124,18 @@
     <script>
         function changeTab(tabId) {
             // Update tab styles
-            const tabs = ['economia', 'politica', 'mercado-laboral', 'tecnologia'];
+            const tabs = ['economia', 'mercado-laboral', 'puestos-demandados'];
 
             tabs.forEach(id => {
                 const tabElement = document.getElementById(`tab-${id}`);
-                if (id === tabId) {
-                    tabElement.classList.remove('tab-inactive');
-                    tabElement.classList.add('tab-active');
-                } else {
-                    tabElement.classList.remove('tab-active');
-                    tabElement.classList.add('tab-inactive');
+                if (tabElement) {
+                    if (id === tabId) {
+                        tabElement.classList.remove('tab-inactive');
+                        tabElement.classList.add('tab-active');
+                    } else {
+                        tabElement.classList.remove('tab-active');
+                        tabElement.classList.add('tab-inactive');
+                    }
                 }
             });
 
@@ -137,9 +145,8 @@
 
             const pageMap = {
                 'economia': 'Economia.html',
-                'politica': 'Politica.html',
                 'mercado-laboral': 'LaboralMarket.html',
-                'tecnologia': 'Tecnologia.html'
+                'puestos-demandados': 'PuestosDemandados.html'
             };
 
             if (pageMap[tabId]) {
