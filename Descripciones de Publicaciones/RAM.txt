@@ -1,0 +1,9 @@
+¿Por qué la memoria RAM se volvió un objeto de lujo? 💾📈
+Si estás pensando en armar o actualizar tu PC este 2026, seguro notaste que los precios están por las nubes. ☁️💸 Después de años de caídas constantes (¡llegamos a mínimos históricos en 2023!), la tendencia se dio vuelta de forma agresiva.
+¿Qué pasó? Aquí las 3 razones clave:
+1️⃣ La "Aspiradora" de la IA 🤖: Las grandes empresas tecnológicas (Google, Meta, OpenAI) están comprando memoria a niveles masivos para sus centros de datos. Entrenar modelos de Inteligencia Artificial requiere cantidades industriales de RAM de alto rendimiento.
+2️⃣ Prioridad de Fabricación 🏭: Gigantes como Samsung, SK Hynix y Micron han movido su producción hacia memorias HBM (especiales para servidores) porque les dejan mucho más margen de ganancia. ¿El resultado? Menos obleas de silicio destinadas a las memorias DDR4 y DDR5 que usamos nosotros. 📉
+3️⃣ Escasez y Especulación 🌪️: Con inventarios en mínimos históricos, cualquier aumento en la demanda dispara los precios de forma inmediata. Se estima que solo en el primer trimestre de 2026, el costo subió entre un 80% y 90% respecto al año anterior. Counterpoint Research
+El dato: Hoy, 1GB de RAM cuesta casi 5 veces más que hace solo dos años. 😱
+¿Tuviste suerte de comprar antes del salto o te tocó pagar el "impuesto IA"? Te leo en los comentarios. 👇
+#Hardware #PCGaming #TechNews #RAM #InteligenciaArtificial #DataCenter #PCBuild #EstadisticasTech
