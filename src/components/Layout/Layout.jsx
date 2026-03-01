@@ -23,7 +23,7 @@ const Navbar = () => {
                                 alt="Grafiquitos Logo"
                                 className="w-full h-full object-cover"
                                 onError={(e) => {
-                                    e.target.src = 'https://api.dicebear.com/7.x/initials/svg?seed=GF';
+                                    e.target.src = 'https://api.dicebear.com/7.x/initials/svg?seed=G';
                                 }}
                             />
                         </div>
