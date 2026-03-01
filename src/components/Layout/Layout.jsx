@@ -19,11 +19,11 @@ const Navbar = () => {
                     <div className="flex-shrink-0 flex items-center gap-2 w-full sm:w-auto justify-center sm:justify-start">
                         <div className="w-10 h-10 rounded-full overflow-hidden shadow-sm border-2 border-slate-100 flex items-center justify-center bg-white flex-shrink-0">
                             <img
-                                src="/img/imagen_perfil_sin_nombre_recortada.jpeg"
+                                src="/perfil.jpg"
                                 alt="Grafiquitos Logo"
                                 className="w-full h-full object-cover"
                                 onError={(e) => {
-                                    e.target.src = 'https://via.placeholder.com/40';
+                                    e.target.src = 'https://api.dicebear.com/7.x/initials/svg?seed=GF';
                                 }}
                             />
                         </div>
