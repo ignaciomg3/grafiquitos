@@ -17,15 +17,8 @@ const Navbar = () => {
                 <div className="flex flex-col sm:flex-row justify-between items-center pt-3 pb-1 sm:py-0 sm:h-16 gap-3 sm:gap-0 border-b border-slate-200">
                     {/* Logo */}
                     <div className="flex-shrink-0 flex items-center gap-2 w-full sm:w-auto justify-center sm:justify-start">
-                        <div className="w-10 h-10 rounded-full overflow-hidden shadow-sm border-2 border-slate-100 flex items-center justify-center bg-white flex-shrink-0">
-                            <img
-                                src="/perfil.jpg"
-                                alt="Grafiquitos Logo"
-                                className="w-full h-full object-cover"
-                                onError={(e) => {
-                                    e.target.src = 'https://api.dicebear.com/7.x/initials/svg?seed=G';
-                                }}
-                            />
+                        <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 shadow-sm flex items-center justify-center flex-shrink-0 text-xl overflow-hidden">
+                            <span>📊</span>
                         </div>
                         <span className="font-bold text-2xl text-slate-800 tracking-tight">Grafiquitos</span>
                     </div>
