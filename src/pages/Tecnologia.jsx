@@ -13,21 +13,7 @@ export default function Tecnologia() {
                 <p className="text-slate-500">Métricas sobre el avance de nuevas tecnologías e IA.</p>
             </header>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                <section className="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-slate-100">
-                    <h2 className="text-lg md:text-xl font-bold mb-4">Adopción de IA Generativa en Empresas</h2>
-                    <div className="h-64 w-full">
-                        <GenerativeAiChart />
-                    </div>
-                </section>
 
-                <section className="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-slate-100">
-                    <h2 className="text-lg md:text-xl font-bold mb-4">Dispositivos Conectados (IoT)</h2>
-                    <div className="h-64 w-full">
-                        <IotChart />
-                    </div>
-                </section>
-            </div>
 
             {/* RAM Charts — stacked vertically */}
             <div className="flex flex-col gap-8 mt-8">

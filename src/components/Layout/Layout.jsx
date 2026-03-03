@@ -19,7 +19,7 @@ const Navbar = () => {
                     <div className="flex-shrink-0 flex items-center gap-2 w-full sm:w-auto justify-center sm:justify-start">
                         <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 shadow-sm flex items-center justify-center flex-shrink-0 text-xl overflow-hidden">
                         </div>
-                        <span className="font-bold text-2xl text-slate-800 tracking-tight">Grafiquitos</span>
+                        <span className="font-bold text-2xl text-slate-800 tracking-tight">G</span>
                     </div>
 
                     {/* Navigation Tabs */}

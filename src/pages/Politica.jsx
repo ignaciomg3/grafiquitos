@@ -12,21 +12,7 @@ export default function Politica() {
                 <p className="text-slate-500">Métricas de opinión pública y distribución parlamentaria.</p>
             </header>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                <section className="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-slate-100">
-                    <h2 className="text-lg md:text-xl font-bold mb-4">Aprobación de Gestión</h2>
-                    <div className="h-64 w-full">
-                        <AprobacionChart />
-                    </div>
-                </section>
-
-                <section className="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-slate-100">
-                    <h2 className="text-lg md:text-xl font-bold mb-4">Composición del Congreso</h2>
-                    <div className="h-64 w-full">
-                        <CongresoChart />
-                    </div>
-                </section>
-            </div>
+            
 
             {/* Cámaras parlamentarias — dos columnas */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-6 md:mt-8">
