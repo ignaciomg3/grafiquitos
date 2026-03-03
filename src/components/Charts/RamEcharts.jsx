@@ -39,7 +39,7 @@ export default function RamEcharts() {
               <div style="display:flex; align-items: center; gap:16px;">
                   <div style="display:flex; flex-direction:column; gap:4px;">
                       <span style="font-size:12px; color:#64748b; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">1GB RAM</span>
-                      <span style="font-size:22px; font-weight:800; color:#7c3aed;">
+                      <span style="font-size:22px; font-weight:800; color:#146B4F;">
                           $${params[0].value.toFixed(2)} <span style="font-size:14px; color:#94a3b8; font-weight:500;">USD</span>
                       </span>
                   </div>
@@ -87,31 +87,31 @@ export default function RamEcharts() {
                         symbolSize: 12,
                         showSymbol: false,
                         itemStyle: {
-                            color: '#8b5cf6',
+                            color: '#3BCF8E',
                             borderColor: '#ffffff',
                             borderWidth: 3,
-                            shadowColor: 'rgba(139, 92, 246, 0.6)',
+                            shadowColor: 'rgba(59, 207, 142, 0.6)',
                             shadowBlur: 10
                         },
                         lineStyle: {
                             width: 5,
                             color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                                { offset: 0, color: '#6366f1' },
-                                { offset: 1, color: '#a855f7' }
+                                { offset: 0, color: '#146B4F' },
+                                { offset: 1, color: '#3BCF8E' }
                             ]),
-                            shadowColor: 'rgba(139, 92, 246, 0.4)',
+                            shadowColor: 'rgba(20, 107, 79, 0.4)',
                             shadowBlur: 15,
                             shadowOffsetY: 8
                         },
                         areaStyle: {
                             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                                { offset: 0, color: 'rgba(139, 92, 246, 0.35)' },
-                                { offset: 0.8, color: 'rgba(139, 92, 246, 0.0)' }
+                                { offset: 0, color: 'rgba(45, 170, 122, 0.35)' },
+                                { offset: 0.8, color: 'rgba(45, 170, 122, 0.0)' }
                             ])
                         },
                         emphasis: {
                             focus: 'series',
-                            itemStyle: { symbolSize: 16, borderWidth: 4 }
+                            itemStyle: { symbolSize: 16, borderWidth: 4, color: '#6EE7B7' }
                         }
                     }
                 ]

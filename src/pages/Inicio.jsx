@@ -35,7 +35,7 @@ export default function Inicio() {
                     <span>Plataforma de Visualización de Datos v2.0</span>
                 </div>
                 <h1 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">
-                    Bienvenido a <span className="text-blue-600 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Grafiquitos</span>
+                    Bienvenido a <span className="text-blue-600 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">G</span>
                 </h1>
                 <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
                     Explora indicadores económicos, tendencias del mercado laboral y avances tecnológicos de Argentina y el mundo a través de visualizaciones interactivas de última generación.

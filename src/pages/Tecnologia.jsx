@@ -3,6 +3,7 @@ import GenerativeAiChart from '../components/Charts/GenerativeAiChart';
 import IotChart from '../components/Charts/IotChart';
 import RamEcharts from '../components/Charts/RamEcharts';
 import RamChartJs from '../components/Charts/RamChartJs';
+import ramIcon from '../assets/iconos/ram.png';
 
 export default function Tecnologia() {
     return (
@@ -56,8 +57,8 @@ export default function Tecnologia() {
                         <div className="mb-8 border-b border-white/10 pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
                             <div>
                                 <h2 className="text-white flex items-center gap-3 font-extrabold text-2xl md:text-3xl tracking-tight" style={{ fontFamily: "'Aldrich', sans-serif" }}>
-                                    <img src="/iconos/ram.png" alt="RAM" className="w-8 h-8 md:w-10 md:h-10" />
-                                    Costos de Hardware en Perspectiva
+                                    <img src={ramIcon} alt="RAM" className="w-8 h-8 md:w-10 md:h-10" />
+                                    Costos de 1GB de RAM en USD.
                                 </h2>
                                 <p className="text-white/60 text-sm md:text-base mt-1" style={{ fontFamily: "'Aldrich', sans-serif" }}>
                                     Análisis comparativo de costos históricos 2020 – 2026 (<span className="text-cyan-400">Chart.js</span>)

@@ -1,13 +1,19 @@
-import React from 'react';
+import flagUS from '../../assets/banderas/icons8-estados-unidos-48.png';
+import flagCN from '../../assets/banderas/icons8-china-48.png';
+import flagDE from '../../assets/banderas/icons8-alemania-48.png';
+import flagIN from '../../assets/banderas/icons8-india-48.png';
+import flagJP from '../../assets/banderas/icons8-japón-48.png';
+import flagGB from '../../assets/banderas/icons8-reino-unido-48.png';
+import flagFR from '../../assets/banderas/icons8-francia-48.png';
 
 const paises = [
-    { puesto: 1, pais: "Estados Unidos", flag: "/iconos/banderas/icons8-estados-unidos-48.png", pbi: 31.82, color: "#0A3161" },
-    { puesto: 2, pais: "China", flag: "/iconos/banderas/icons8-china-48.png", pbi: 20.65, color: "#EE1C25" },
-    { puesto: 3, pais: "Alemania", flag: "/iconos/banderas/icons8-alemania-48.png", pbi: 5.33, color: "#1a1a1a" },
-    { puesto: 4, pais: "India", flag: "/iconos/banderas/icons8-india-48.png", pbi: 4.51, color: "#FF9933" },
-    { puesto: 5, pais: "Japón", flag: "/iconos/banderas/icons8-japón-48.png", pbi: 4.46, color: "#BC002D" },
-    { puesto: 6, pais: "Reino Unido", flag: "/iconos/banderas/icons8-reino-unido-48.png", pbi: 4.23, color: "#012169" },
-    { puesto: 7, pais: "Francia", flag: "/iconos/banderas/icons8-francia-48.png", pbi: 3.56, color: "#002395" },
+    { puesto: 1, pais: "Estados Unidos", flag: flagUS, pbi: 31.82, color: "#0A3161" },
+    { puesto: 2, pais: "China", flag: flagCN, pbi: 20.65, color: "#EE1C25" },
+    { puesto: 3, pais: "Alemania", flag: flagDE, pbi: 5.33, color: "#1a1a1a" },
+    { puesto: 4, pais: "India", flag: flagIN, pbi: 4.51, color: "#FF9933" },
+    { puesto: 5, pais: "Japón", flag: flagJP, pbi: 4.46, color: "#BC002D" },
+    { puesto: 6, pais: "Reino Unido", flag: flagGB, pbi: 4.23, color: "#012169" },
+    { puesto: 7, pais: "Francia", flag: flagFR, pbi: 3.56, color: "#002395" },
 ];
 
 const MAX_PBI = Math.max(...paises.map(p => p.pbi));

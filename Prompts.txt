@@ -1,0 +1,28 @@
+Explicación de proyecto.
+
+Estoy haciendo una nueva página web y un Instagram donde posteo únicamente 
+gráficos estadísticos (generalmente simples).
+La idea es que los gráficos sean perfectamente visibles tanto en PC como en Mobile. 
+
+
+
+Pedido de gráfico:
+
+Necesito los datos de la variable: Precio de la 1 Gigabyte de memoria RAM en USD.
+En el transcurso del tiempo  (últimos 5 años).
+La respuesta debe estar en formato JSON:
+
+{
+año:2021 {precio: },
+año:2022 {precio: },
+[...]
+
+} 
+
+
+
+Pedido de Pie de publicación. 
+
+
+
+
