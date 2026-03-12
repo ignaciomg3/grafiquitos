@@ -27,7 +27,7 @@ const StatCard = ({ icon: Icon, title, description, path, color }) => {
 
 export default function Inicio() {
     return (
-        <div className="w-full text-slate-800 max-w-5xl mx-auto py-8 md:py-16">
+        <div className="w-full text-slate-800 max-w-[1440px] mx-auto py-8 md:py-16">
             {/* Hero Section */}
             <section className="text-center mb-16 md:mb-24">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 text-sm font-bold mb-6 border border-blue-100 animate-pulse">

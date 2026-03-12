@@ -65,7 +65,7 @@ export default function PuestosDemandados() {
             {/* Hero */}
             <section className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-12 px-6 text-center rounded-2xl mb-8">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">Los puestos más demandados</h1>
-                <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+                <p className="text-xl text-blue-100 max-w-5xl mx-auto">
                     Análisis de la brecha crítica entre la oferta profesional y la demanda del mercado tecnológico actual.
                 </p>
                 <div className="mt-8 flex justify-center gap-4 flex-wrap">
@@ -82,7 +82,7 @@ export default function PuestosDemandados() {
 
             {/* Section 1: Bar Chart */}
             <section className="py-8">
-                <div className="mb-8 text-center max-w-3xl mx-auto px-4">
+                <div className="mb-8 text-center max-w-5xl mx-auto px-4">
                     <h2 className="text-3xl font-bold text-gray-800 mb-4">Oferta vs. Demanda Global</h2>
                     <p className="text-gray-600">
                         Comparativa del volumen de vacantes abiertas (Demanda) contra profesionales calificados disponibles (Oferta).
@@ -123,7 +123,7 @@ export default function PuestosDemandados() {
             {/* Section 3: Scatter */}
             <section className="py-8">
                 <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">Matriz de Escasez de Talento</h2>
-                <p className="text-gray-600 text-center max-w-3xl mx-auto mb-8">
+                <p className="text-gray-600 text-center max-w-6xl mx-auto mb-8">
                     El eje Y representa la Demanda, el eje X la Oferta.{' '}
                     <strong>Burbujas más grandes y altas</strong> indican mayor urgencia y mejores salarios potenciales debido a la escasez.
                 </p>

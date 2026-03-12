@@ -8,12 +8,13 @@ const tabs = [
     { id: 'puestos-demandados', label: 'Puestos demandados', path: '/puestos-demandados' },
     { id: 'tecnologia', label: 'Tecnología', path: '/tecnologia' },
     { id: 'politica', label: 'Política', path: '/politica' },
+    { id: 'informe-mercado', label: 'Informe Mercado', path: '/informe-mercado' },
 ];
 
 const Navbar = () => {
     return (
         <header className="bg-white shadow-sm border-b border-slate-200">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col sm:flex-row justify-between items-center pt-3 pb-1 sm:py-0 sm:h-16 gap-3 sm:gap-0 border-b border-slate-200">
                     {/* Logo */}
                     <div className="flex-shrink-0 flex items-center gap-2 w-full sm:w-auto justify-center sm:justify-start">
@@ -49,7 +50,7 @@ export default function Layout() {
     return (
         <>
             <Navbar />
-            <main className="flex-grow flex flex-col relative w-full h-full p-4 md:p-8 max-w-7xl mx-auto">
+            <main className="flex-grow flex flex-col relative w-full h-full p-4 md:p-8 max-w-[1600px] mx-auto">
                 <Outlet />
             </main>
         </>

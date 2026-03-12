@@ -6,6 +6,7 @@ import Economia from './pages/Economia';
 import PuestosDemandados from './pages/PuestosDemandados';
 import Politica from './pages/Politica';
 import Inicio from './pages/Inicio';
+import InformeMercado from './pages/InformeMercado';
 
 // Placeholders for other components
 const Placeholder = ({ title }) => (
@@ -34,6 +35,7 @@ function App() {
           <Route path="puestos-demandados" element={<PuestosDemandados />} />
           <Route path="tecnologia" element={<Tecnologia />} />
           <Route path="politica" element={<Politica />} />
+          <Route path="informe-mercado" element={<InformeMercado />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

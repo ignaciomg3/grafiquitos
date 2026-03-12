@@ -7,7 +7,7 @@ export default function LaboralMarket() {
         <div className="text-slate-800">
             {/* Portada / Cabecera */}
             <header className="bg-blue-900 text-white py-12 md:py-16 px-4 md:px-8 text-center shadow-md rounded-2xl mb-8">
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-6xl mx-auto">
                     <h1 className="text-3xl md:text-5xl font-bold mb-4">El Futuro del Trabajo</h1>
                     <p className="text-lg md:text-xl text-blue-200 font-light">
                         Análisis de la demanda, oferta y proyección de los puestos más críticos.
