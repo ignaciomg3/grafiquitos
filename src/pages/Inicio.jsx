@@ -1,14 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-    HiOutlineChartBar,
     HiOutlinePresentationChartLine,
     HiOutlineLightningBolt,
     HiOutlineChip,
-    HiOutlineUserGroup
+    HiOutlineUserGroup,
+    HiOutlineHeart
 } from 'react-icons/hi';
 
-const StatCard = ({ icon: Icon, title, description, path, color }) => {
+const StatCard = (props) => {
+    const { icon: Icon, title, description, path, color } = props;
     const navigate = useNavigate();
     return (
         <div
@@ -17,7 +18,7 @@ const StatCard = ({ icon: Icon, title, description, path, color }) => {
         >
             <div className={`absolute top-0 right-0 w-24 h-24 -mr-8 -mt-8 rounded-full opacity-5 group-hover:opacity-10 transition-opacity bg-${color}-500`}></div>
             <div className={`w-12 h-12 rounded-xl bg-${color}-50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                <Icon className={`text-2xl text-${color}-600`} />
+                {React.createElement(Icon, { className: `text-2xl text-${color}-600` })}
             </div>
             <h3 className="text-lg font-bold text-slate-800 mb-1">{title}</h3>
             <p className="text-slate-500 text-sm">{description}</p>
@@ -52,11 +53,11 @@ export default function Inicio() {
                     color="emerald"
                 />
                 <StatCard
-                    icon={HiOutlineChartBar}
-                    title="Mercado Laboral"
-                    description="Evolución del empleo y análisis de salarios."
-                    path="/mercado-laboral"
-                    color="blue"
+                    icon={HiOutlineHeart}
+                    title="Humanidades"
+                    description="Evolución de la esperanza de vida global."
+                    path="/humanidades"
+                    color="pink"
                 />
                 <StatCard
                     icon={HiOutlineUserGroup}

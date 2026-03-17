@@ -11,8 +11,8 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import OfertaDemandaChart from '../components/Charts/OfertaDemandaChart';
-import MapaDispersionChart from '../components/Charts/MapaDispersionChart';
+import OfertaDemandaChart from '../components/Charts/PuestosDemandados/OfertaDemandaChart';
+import MapaDispersionChart from '../components/Charts/InformeMercado/MapaDispersionChart';
 
 ChartJS.register(
   CategoryScale,

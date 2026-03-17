@@ -1,8 +1,9 @@
 import React from 'react';
-import InflacionChart from '../components/Charts/InflacionChart';
-import PibChart from '../components/Charts/PibChart';
-import SalarioAlquilerChart from '../components/Charts/SalarioAlquilerChart';
-import TopPbiChart from '../components/Charts/TopPbiChart';
+import InflacionChart from '../components/Charts/Economia/InflacionChart';
+import PibChart from '../components/Charts/Economia/PibChart';
+import PetroleoChart from '../components/Charts/Economia/PetroleoChart';
+import SalarioAlquilerChart from '../components/Charts/Economia/SalarioAlquilerChart';
+import TopPbiChart from '../components/Charts/Economia/TopPbiChart';
 
 export default function Economia() {
     return (
@@ -65,6 +66,26 @@ export default function Economia() {
                     <p className="text-[11px] sm:text-xs text-slate-500 mt-4 leading-relaxed">
                         Nota: Los datos de 2024-2026 son estimaciones basadas en tipo de cambio de mercado.
                         El salario usa base RIPTE/Hogares y el alquiler el promedio de CABA.
+                    </p>
+                </section>
+
+                <section className="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-slate-100 md:col-span-2">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+                        <div>
+                            <h2 className="text-base sm:text-lg md:text-xl font-bold text-slate-800 mb-1">{'\u{1F6E2}'} Precio del Petroleo (USD/barril)</h2>
+                            <p className="text-slate-500 text-xs sm:text-sm"></p>
+                        </div>
+                        <span className="inline-flex w-fit bg-cyan-50 text-cyan-700 font-semibold px-3 py-1 rounded-full text-[11px] sm:text-xs border border-cyan-200">
+                            Energia y Commodities
+                        </span>
+                    </div>
+
+                    <div className="h-72 sm:h-80 md:h-96 w-full">
+                        <PetroleoChart />
+                    </div>
+
+                    <p className="text-[11px] sm:text-xs text-slate-500 mt-4 leading-relaxed">
+                        
                     </p>
                 </section>
 

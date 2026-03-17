@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import Tecnologia from './pages/Tecnologia';
-import LaboralMarket from './pages/LaboralMarket';
 import Economia from './pages/Economia';
+import Humanidades from './pages/Humanidades';
 import PuestosDemandados from './pages/PuestosDemandados';
 import Politica from './pages/Politica';
 import Inicio from './pages/Inicio';
@@ -31,7 +31,7 @@ function App() {
           <Route index element={<Inicio />} />
           <Route path="inicio" element={<Navigate to="/" replace />} />
           <Route path="economia" element={<Economia />} />
-          <Route path="mercado-laboral" element={<LaboralMarket />} />
+          <Route path="humanidades" element={<Humanidades />} />
           <Route path="puestos-demandados" element={<PuestosDemandados />} />
           <Route path="tecnologia" element={<Tecnologia />} />
           <Route path="politica" element={<Politica />} />

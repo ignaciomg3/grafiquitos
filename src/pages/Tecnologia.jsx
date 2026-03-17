@@ -1,8 +1,8 @@
 import React from 'react';
-import GenerativeAiChart from '../components/Charts/GenerativeAiChart';
-import IotChart from '../components/Charts/IotChart';
-import RamEcharts from '../components/Charts/RamEcharts';
-import RamChartJs from '../components/Charts/RamChartJs';
+import GenerativeAiChart from '../components/Charts/Tecnologia/GenerativeAiChart';
+import IotChart from '../components/Charts/Tecnologia/IotChart';
+import RamEcharts from '../components/Charts/Tecnologia/RamEcharts';
+import RamChartJs from '../components/Charts/Tecnologia/RamChartJs';
 import ramIcon from '../assets/iconos/ram.png';
 
 export default function Tecnologia() {

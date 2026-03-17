@@ -46,8 +46,6 @@ function wrapLabel(str, maxChars) {
     return lines;
 }
 
-export { processedData as jobData };
-
 export default function MainBarChart() {
     const labelsWrapped = processedData.map(j => wrapLabel(j.puesto, 20));
 

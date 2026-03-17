@@ -1,0 +1,32 @@
+[
+  {
+    "anio": 1976,
+    "precio_usd_promedio": 13.90,
+    "contexto": "Efectos post-crisis del petróleo de 1973."
+  },
+  {
+    "anio": 1886,
+    "precio_usd_promedio": 22.95,
+    "contexto": "Guerra de precios y exceso de oferta de la OPEP."
+  },
+  {
+    "anio": 1996,
+    "precio_usd_promedio": 25.39,
+    "contexto": "Recuperación económica tras la Guerra del Golfo."
+  },
+  {
+    "anio": 2006,
+    "precio_usd_promedio": 74.41,
+    "contexto": "Auge de demanda por parte de China e India."
+  },
+  {
+    "anio": 2016,
+    "precio_usd_promedio": 51.97,
+    "contexto": "Aparición del 'Shale Oil' y sobreproducción global."
+  },
+  {
+    "anio": 2026,
+    "precio_usd_actual": 96.19,
+    "contexto": "Tensiones geopolíticas y transición energética."
+  }
+]

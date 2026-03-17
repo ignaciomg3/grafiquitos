@@ -57,7 +57,7 @@ const chartLabels = processedData.map(d => wrapLabel(d.puesto));
 
 const chartColors = {
   demand: '#00b0dcff',
-  supply: '#8864b5ff',
+  supply: '#b2b564ff',
   opportunity: '#74bd7fff',
   grid: 'rgba(51, 65, 85, 0.4)',
   text: '#94A3B8'

@@ -1,8 +1,8 @@
 import React from 'react';
-import AprobacionChart from '../components/Charts/AprobacionChart';
-import CongresoChart from '../components/Charts/CongresoChart';
-import DiputadosChart from '../components/Charts/DiputadosChart';
-import SenadoresChart from '../components/Charts/SenadoresChart';
+import AprobacionChart from '../components/Charts/Politica/AprobacionChart';
+import CongresoChart from '../components/Charts/Politica/CongresoChart';
+import DiputadosChart from '../components/Charts/Politica/DiputadosChart';
+import SenadoresChart from '../components/Charts/Politica/SenadoresChart';
 
 export default function Politica() {
     return (

@@ -4,7 +4,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 const tabs = [
     { id: 'inicio', label: 'Inicio', path: '/' },
     { id: 'economia', label: 'Economía', path: '/economia' },
-    { id: 'mercado-laboral', label: 'Mercado Laboral', path: '/mercado-laboral' },
+    { id: 'humanidades', label: 'Humanidades', path: '/humanidades' },
     { id: 'puestos-demandados', label: 'Puestos demandados', path: '/puestos-demandados' },
     { id: 'tecnologia', label: 'Tecnología', path: '/tecnologia' },
     { id: 'politica', label: 'Política', path: '/politica' },

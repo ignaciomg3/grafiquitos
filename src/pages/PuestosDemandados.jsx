@@ -1,26 +1,21 @@
 import React, { useState } from 'react';
-import MainBarChart from '../components/Charts/MainBarChart';
-import ScatterGapChart from '../components/Charts/ScatterGapChart';
+import OfertaDemandaChart from '../components/Charts/PuestosDemandados/OfertaDemandaChart';
+import ScatterGapChart from '../components/Charts/PuestosDemandados/ScatterGapChart';
 
 const jobData = [
-    { puesto: "AI / Machine Learning Engineer", demanda: 150000, oferta: 45000, desc: "Desarrollo de modelos LLM y algoritmos predictivos." },
-    { puesto: "Data Scientist", demanda: 120000, oferta: 80000, desc: "Análisis de big data para toma de decisiones." },
-    { puesto: "Cybersecurity Specialist", demanda: 100000, oferta: 60000, desc: "Protección de infraestructura y datos críticos." },
-    { puesto: "Cloud Architect", demanda: 90000, oferta: 55000, desc: "Diseño de soluciones escalables en AWS/Azure." },
+    { puesto: "Cybersecurity Specialist", demanda: 3500000, oferta: 1000000, desc: "Protección de infraestructura y datos críticos." },
+    { puesto: "Full Stack Developer", demanda: 5000000, oferta: 3500000, desc: "Desarrollo web integral (Frontend & Backend)." },
+    { puesto: "Data Scientist", demanda: 2000000, oferta: 800000, desc: "Análisis de big data para toma de decisiones." },
+    { puesto: "Cloud Architect", demanda: 1800000, oferta: 600000, desc: "Diseño de soluciones escalables en AWS/Azure." },
+    { puesto: "AI / Machine Learning Engineer", demanda: 1500000, oferta: 400000, desc: "Desarrollo de modelos LLM y algoritmos predictivos." },
+    { puesto: "DevOps Engineer", demanda: 1200000, oferta: 500000, desc: "Automatización de CI/CD y gestión de servidores." },
+    { puesto: "Digital Marketing Growth", demanda: 2500000, oferta: 2200000, desc: "Estrategias de adquisición y retención digital." },
+    { puesto: "Sustainability Manager", demanda: 400000, oferta: 150000, desc: "Gestión de cumplimiento ESG y huella de carbono." },
+    { puesto: "UX/UI Designer", demanda: 1000000, oferta: 850000, desc: "Diseño de interfaces y experiencia de usuario." },
+    { puesto: "Blockchain Developer", demanda: 300000, oferta: 150000, desc: "Desarrollo de contratos inteligentes y dApps." }
 ];
 
-const formattedJson = [
-    { puesto: "AI / Machine Learning Engineer", demanda: 150000, oferta: 45000 },
-    { puesto: "Data Scientist", demanda: 120000, oferta: 80000 },
-    { puesto: "Cybersecurity Specialist", demanda: 100000, oferta: 60000 },
-    { puesto: "Cloud Architect", demanda: 90000, oferta: 55000 },
-    { puesto: "Full Stack Developer", demanda: 85000, oferta: 82000 },
-    { puesto: "DevOps Engineer", demanda: 75000, oferta: 50000 },
-    { puesto: "UX/UI Designer", demanda: 60000, oferta: 55000 },
-    { puesto: "Digital Marketing Growth", demanda: 55000, oferta: 65000 },
-    { puesto: "Blockchain Developer", demanda: 40000, oferta: 15000 },
-    { puesto: "Sustainability Manager", demanda: 35000, oferta: 10000 }
-];
+const formattedJson = jobData.map(({ puesto, demanda, oferta }) => ({ puesto, demanda, oferta }));
 
 function JobCard({ job, index }) {
     const gap = job.demanda - job.oferta;
@@ -70,11 +65,11 @@ export default function PuestosDemandados() {
                 </p>
                 <div className="mt-8 flex justify-center gap-4 flex-wrap">
                     <div className="bg-white/10 backdrop-blur-md rounded-lg p-4">
-                        <p className="text-3xl font-bold">815k</p>
+                        <p className="text-3xl font-bold">19.2M</p>
                         <p className="text-sm text-blue-200 uppercase tracking-wide">Vacantes Totales</p>
                     </div>
                     <div className="bg-white/10 backdrop-blur-md rounded-lg p-4">
-                        <p className="text-3xl font-bold text-amber-400">30%</p>
+                        <p className="text-3xl font-bold text-amber-400">47%</p>
                         <p className="text-sm text-blue-200 uppercase tracking-wide">Déficit Promedio</p>
                     </div>
                 </div>
@@ -91,7 +86,7 @@ export default function PuestosDemandados() {
                 </div>
                 <div className="bg-gray-50 rounded-2xl p-6 shadow-inner border border-gray-100">
                     <div className="h-96 w-full">
-                        <MainBarChart />
+                        <OfertaDemandaChart />
                     </div>
                     <p className="text-center text-sm text-gray-500 mt-4 italic">Fuente: Estimaciones de mercado global Q1 2026</p>
                 </div>

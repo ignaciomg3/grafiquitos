@@ -1,10 +1,10 @@
-import flagUS from '../../assets/banderas/icons8-estados-unidos-48.png';
-import flagCN from '../../assets/banderas/icons8-china-48.png';
-import flagDE from '../../assets/banderas/icons8-alemania-48.png';
-import flagIN from '../../assets/banderas/icons8-india-48.png';
-import flagJP from '../../assets/banderas/icons8-japón-48.png';
-import flagGB from '../../assets/banderas/icons8-reino-unido-48.png';
-import flagFR from '../../assets/banderas/icons8-francia-48.png';
+import flagUS from '../../../assets/banderas/icons8-estados-unidos-48.png';
+import flagCN from '../../../assets/banderas/icons8-china-48.png';
+import flagDE from '../../../assets/banderas/icons8-alemania-48.png';
+import flagIN from '../../../assets/banderas/icons8-india-48.png';
+import flagJP from '../../../assets/banderas/icons8-japón-48.png';
+import flagGB from '../../../assets/banderas/icons8-reino-unido-48.png';
+import flagFR from '../../../assets/banderas/icons8-francia-48.png';
 
 const paises = [
     { puesto: 1, pais: "Estados Unidos", flag: flagUS, pbi: 31.82, color: "#0A3161" },
