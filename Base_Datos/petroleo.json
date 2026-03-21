@@ -1,32 +1,33 @@
 [
   {
-    "anio": 1976,
-    "precio_usd_promedio": 13.90,
-    "contexto": "Efectos post-crisis del petróleo de 1973."
+    "anio": 1974,
+    "precio_usd": 12.00,
+    "descripcion": "Embargo de la OPEP (1973-1974): El precio del petróleo pasó de ~3 USD a ~12 USD por barril tras restricciones de producción."
+  },
+  
+  {
+    "anio": 1990,
+    "precio_usd": 36.00,
+    "descripcion": "Invasión de Kuwait: Suba abrupta del precio por riesgo de interrupción del suministro en Medio Oriente."
   },
   {
-    "anio": 1886,
-    "precio_usd_promedio": 22.95,
-    "contexto": "Guerra de precios y exceso de oferta de la OPEP."
+    "anio": 2008,
+    "precio_usd": 147.27,
+    "descripcion": "Crisis Financiera Global: Máximo histórico del petróleo seguido de una fuerte caída tras la crisis económica."
+  }, 
+  {
+    "anio": 2020,
+    "precio_usd": 0.00,
+    "descripcion": "Pandemia COVID-19: El contrato futuro WTI cotizó en negativo por exceso de oferta y falta de almacenamiento."
   },
   {
-    "anio": 1996,
-    "precio_usd_promedio": 25.39,
-    "contexto": "Recuperación económica tras la Guerra del Golfo."
-  },
-  {
-    "anio": 2006,
-    "precio_usd_promedio": 74.41,
-    "contexto": "Auge de demanda por parte de China e India."
-  },
-  {
-    "anio": 2016,
-    "precio_usd_promedio": 51.97,
-    "contexto": "Aparición del 'Shale Oil' y sobreproducción global."
+    "anio": 2022,
+    "precio_usd": 110.00,
+    "descripcion": "Guerra en Ucrania: Sanciones a Rusia y crisis energética global impulsaron el precio por encima de los 100 USD."
   },
   {
     "anio": 2026,
-    "precio_usd_actual": 96.19,
-    "contexto": "Tensiones geopolíticas y transición energética."
+    "precio_usd": 106.00,
+    "descripcion": "Estimación basada en tensiones geopolíticas y dinámica global de oferta y demanda en el mercado energético."
   }
 ]

@@ -17,14 +17,16 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip,
 const normalizedData = oilData
     .map((item) => ({
         anio: item.anio,
-        precio: item.precio_usd_promedio ?? item.precio_usd_actual ?? null,
-        contexto: item.contexto ?? 'Sin contexto'
+        precio: item.precio_usd ?? null,
+        contexto: item.descripcion ?? 'Sin contexto'
     }))
     .filter((item) => item.precio !== null);
 
 const prices = normalizedData.map((item) => item.precio);
 const minPrice = Math.min(...prices);
 const maxPrice = Math.max(...prices);
+const yAxisMin = Math.floor(minPrice / 20) * 20;
+const yAxisMax = Math.ceil(maxPrice / 20) * 20;
 
 function priceToColor(price) {
     if (maxPrice === minPrice) {
@@ -113,9 +115,13 @@ export default function PetroleoChart() {
             },
             y: {
                 beginAtZero: false,
+                min: yAxisMin,
+                max: yAxisMax,
                 grid: { color: '#e2e8f0' },
                 ticks: {
-                    color: '#475569',
+                    stepSize: 20,
+                    color: '#000000',
+                    font: { size: 12, weight: 'normal' },
                     callback: (value) => `$${value}`
                 }
             }
