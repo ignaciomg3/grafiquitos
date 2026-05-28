@@ -4,6 +4,7 @@ import PibChart from '../components/Charts/Economia/PibChart';
 import PetroleoChart from '../components/Charts/Economia/PetroleoChart';
 import SalarioAlquilerChart from '../components/Charts/Economia/SalarioAlquilerChart';
 import TopPbiChart from '../components/Charts/Economia/TopPbiChart';
+import RecaudacionArgentinaChart from '../components/Charts/Economia/RecaudacionArgentinaChart';
 
 export default function Economia() {
     return (
@@ -104,6 +105,14 @@ export default function Economia() {
                     <p className="text-slate-500 text-xs sm:text-sm mb-4">Variacion porcentual mensual del IPC (2019-2026)</p>
                     <div className="h-72 sm:h-80 md:h-96 w-full">
                         <InflacionChart />
+                    </div>
+                </section>
+
+                <section className="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-slate-100 md:col-span-2">
+                    <h2 className="text-base sm:text-lg md:text-xl font-bold mb-1">Recaudacion Anual del Estado Argentino (USD)</h2>
+                    <p className="text-slate-500 text-xs sm:text-sm mb-4">Distribucion estimada 2026 por concepto tributario (porcentaje sobre el total).</p>
+                    <div className="h-[30rem] w-full">
+                        <RecaudacionArgentinaChart />
                     </div>
                 </section>
             </div>
