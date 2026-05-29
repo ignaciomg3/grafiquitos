@@ -5,56 +5,79 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const bloques = [
-    { label: 'La Libertad Avanza', bancas: 95, color: '#7D2181' },
-    { label: 'Fuerza Patria (K)', bancas: 93, color: '#00ADEF' },
-    { label: 'PRO / Fuerza Cambio', bancas: 22, color: '#FFD700' },
-    { label: 'Unidos (UCR/Fed.)', bancas: 22, color: '#E10019' },
-    { label: 'Innovación Federal', bancas: 9, color: '#00A199' },
-    { label: 'MID / Coherencia', bancas: 7, color: '#003366' },
-    { label: 'FIT-U (Izquierda)', bancas: 4, color: '#CC0000' },
-    { label: 'Otros Provinciales', bancas: 5, color: '#A0A0A0' },
+    { label: 'La Libertad Avanza', bancas: 95, color: '#7c3aed', softColor: '#ede9fe' },
+    { label: 'Fuerza Patria', bancas: 93, color: '#0284c7', softColor: '#e0f2fe' },
+    { label: 'PRO / Fuerza Cambio', bancas: 22, color: '#f59e0b', softColor: '#fef3c7' },
+    { label: 'Unidos (UCR/Fed.)', bancas: 22, color: '#dc2626', softColor: '#fee2e2' },
+    { label: 'Innovacion Federal', bancas: 9, color: '#0f766e', softColor: '#ccfbf1' },
+    { label: 'MID / Coherencia', bancas: 7, color: '#1e3a8a', softColor: '#dbeafe' },
+    { label: 'FIT-U', bancas: 4, color: '#b91c1c', softColor: '#fee2e2' },
+    { label: 'Otros Provinciales', bancas: 5, color: '#64748b', softColor: '#e2e8f0' }
 ];
 
-const totalBancas = bloques.reduce((sum, b) => sum + b.bancas, 0);
+const totalBancas = bloques.reduce((sum, bloque) => sum + bloque.bancas, 0);
+const bloquePrincipal = bloques.reduce((max, bloque) => (
+    bloque.bancas > max.bancas ? bloque : max
+), bloques[0]);
+
+const formatPct = (bancas) => `${((bancas / totalBancas) * 100).toFixed(1)}%`;
+
+const centerLabelPlugin = {
+    id: 'diputadosCenterLabel',
+    afterDraw(chart) {
+        const { ctx } = chart;
+        const meta = chart.getDatasetMeta(0);
+
+        if (!meta?.data?.length) {
+            return;
+        }
+
+        const { x, y } = meta.data[0];
+
+        ctx.save();
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#0f172a';
+        ctx.font = '800 22px Inter, sans-serif';
+        ctx.fillText(totalBancas, x, y - 10);
+        ctx.fillStyle = '#64748b';
+        ctx.font = '700 11px Inter, sans-serif';
+        ctx.fillText('bancas', x, y + 10);
+        ctx.fillStyle = '#7c3aed';
+        ctx.font = '700 10px Inter, sans-serif';
+        ctx.fillText('Diputados', x, y + 28);
+        ctx.restore();
+    }
+};
 
 const data = {
-    labels: bloques.map(b => b.label),
+    labels: bloques.map((bloque) => bloque.label),
     datasets: [{
-        data: bloques.map(b => b.bancas),
-        backgroundColor: bloques.map(b => b.color),
-        borderColor: '#fff',
+        data: bloques.map((bloque) => bloque.bancas),
+        backgroundColor: bloques.map((bloque) => bloque.color),
+        borderColor: '#f8fafc',
+        borderRadius: 5,
         borderWidth: 3,
-        hoverOffset: 10,
+        hoverBorderColor: '#ffffff',
+        hoverOffset: 12,
+        spacing: 2
     }]
 };
 
 const options = {
     responsive: true,
     maintainAspectRatio: false,
-    cutout: '55%',
+    cutout: '64%',
+    rotation: -80,
     plugins: {
         legend: {
-            position: 'right',
-            labels: {
-                font: { size: 12, family: "'Inter', sans-serif" },
-                color: '#1e293b',
-                padding: 14,
-                usePointStyle: true,
-                pointStyleWidth: 10,
-                generateLabels: (chart) =>
-                    chart.data.labels.map((label, i) => ({
-                        text: `${label}  (${bloques[i].bancas})`,
-                        fillStyle: bloques[i].color,
-                        strokeStyle: '#fff',
-                        lineWidth: 2,
-                        pointStyle: 'circle',
-                        index: i,
-                        hidden: false,
-                    }))
-            }
+            display: false
         },
         tooltip: {
             backgroundColor: 'rgba(15, 23, 42, 0.95)',
+            borderColor: 'rgba(148, 163, 184, 0.35)',
+            borderWidth: 1,
+            displayColors: false,
             titleFont: { size: 13, weight: 'bold' },
             bodyFont: { size: 12 },
             padding: 12,
@@ -62,8 +85,7 @@ const options = {
             callbacks: {
                 label: (ctx) => {
                     const bancas = ctx.parsed;
-                    const pct = ((bancas / totalBancas) * 100).toFixed(1);
-                    return `  ${bancas} bancas  (${pct}%)`;
+                    return ` ${bancas} bancas (${formatPct(bancas)})`;
                 }
             }
         }
@@ -72,16 +94,52 @@ const options = {
 
 export default function DiputadosChart() {
     return (
-        <div className="h-full w-full flex flex-col">
-            {/* Doughnut */}
-            <div className="flex-1 min-h-0">
-                <Doughnut data={data} options={options} />
+        <div className="h-full w-full grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_13rem] gap-4">
+            <div className="min-h-0 rounded-xl bg-gradient-to-br from-slate-50 via-white to-violet-50/70 border border-slate-100 p-3">
+                <Doughnut data={data} options={options} plugins={[centerLabelPlugin]} />
             </div>
 
-            {/* Centro label */}
-            <p className="text-center text-xs text-slate-400 mt-3 font-medium tracking-wide uppercase">
-                Total: {totalBancas} bancas  •  Cámara de Diputados 2026
-            </p>
+            <div className="min-h-0 overflow-y-auto pr-1">
+                <div className="mb-3 border-l-4 border-violet-500 pl-3">
+                    <p className="text-[10px] font-bold uppercase tracking-wide text-violet-700">
+                        Bloque principal
+                    </p>
+                    <p className="truncate text-sm font-black text-slate-900">{bloquePrincipal.label}</p>
+                    <p className="text-xs font-semibold text-slate-500">
+                        {bloquePrincipal.bancas} bancas - {formatPct(bloquePrincipal.bancas)}
+                    </p>
+                </div>
+
+                <div className="space-y-2">
+                    {bloques.map((bloque) => (
+                        <div className="rounded-lg border border-slate-200 bg-white/80 p-2 shadow-sm" key={bloque.label}>
+                            <div className="flex items-center justify-between gap-2">
+                                <div className="flex min-w-0 items-center gap-2">
+                                    <span
+                                        aria-hidden="true"
+                                        className="h-2.5 w-2.5 shrink-0 rounded-full ring-4"
+                                        style={{
+                                            backgroundColor: bloque.color,
+                                            '--tw-ring-color': bloque.softColor
+                                        }}
+                                    />
+                                    <p className="truncate text-xs font-bold text-slate-700">{bloque.label}</p>
+                                </div>
+                                <p className="shrink-0 text-xs font-black text-slate-900">{bloque.bancas}</p>
+                            </div>
+                            <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-100">
+                                <div
+                                    className="h-full rounded-full"
+                                    style={{
+                                        width: formatPct(bloque.bancas),
+                                        backgroundColor: bloque.color
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }

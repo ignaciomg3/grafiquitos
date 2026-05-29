@@ -30,6 +30,30 @@ const itemPrincipal = detallesRecaudacionAnual.reduce((max, detalle) => (
     detalle.porcentaje > max.porcentaje ? detalle : max
 ), detallesRecaudacionAnual[0]);
 
+const getEmoji = (label) => {
+    const s = String(label || '').toLowerCase();
+    if (
+        s.includes('jubi') ||
+        s.includes('jubil') ||
+        s.includes('aporte') ||
+        s.includes('aportes') ||
+        s.includes('previs') ||
+        s.includes('previsional')
+    ) return '🧓';
+    if (s.includes('petr') || s.includes('oil') || s.includes('crudo')) return '🛢️';
+    if (s.includes('comerc') || s.includes('export') || s.includes('import') || s.includes('aduan')) return '🌎';
+    if (s.includes('impu') || s.includes('tax')) return '💸';
+    if (s.includes('salud') || s.includes('health')) return '🏥';
+    if (s.includes('educ') || s.includes('school')) return '🎓';
+    if (s.includes('energ') || s.includes('electric') || s.includes('gas')) return '⚡';
+    if (s.includes('defen') || s.includes('milit')) return '🛡️';
+    if (s.includes('trans') || s.includes('viaj') || s.includes('truck')) return '🚆';
+    if (s.includes('turis') || s.includes('vacac')) return '🏖️';
+    if (s.includes('agric') || s.includes('campo') || s.includes('rural')) return '🌾';
+    if (s.includes('indus') || s.includes('fabr')) return '🏭';
+    return '🔸';
+};
+
 const chartColors = ['#0f766e', '#2563eb', '#dc2626', '#f59e0b', '#7c3aed', '#475569'];
 const softChartColors = ['#ccfbf1', '#dbeafe', '#fee2e2', '#fef3c7', '#ede9fe', '#e2e8f0'];
 
@@ -50,16 +74,16 @@ const centerLabelPlugin = {
         ctx.textBaseline = 'middle';
 
         ctx.fillStyle = '#0f172a';
-        ctx.font = '700 22px Inter, sans-serif';
-        ctx.fillText(`${itemPrincipal.porcentaje}%`, x, y - 12);
+        ctx.font = '700 26px Inter, sans-serif';
+        ctx.fillText(`${itemPrincipal.porcentaje}%`, x, y - 14);
 
         ctx.fillStyle = '#64748b';
-        ctx.font = '600 11px Inter, sans-serif';
-        ctx.fillText('Principal', x, y + 9);
+        ctx.font = '600 12px Inter, sans-serif';
+        ctx.fillText('Principal', x, y + 10);
 
         ctx.fillStyle = '#0f766e';
-        ctx.font = '700 10px Inter, sans-serif';
-        ctx.fillText(formatBillions(totalRecaudacionUsd), x, y + 27);
+        ctx.font = '700 12px Inter, sans-serif';
+        ctx.fillText(formatBillions(totalRecaudacionUsd), x, y + 30);
         ctx.restore();
     }
 };
@@ -98,11 +122,11 @@ const chartOptions = {
             borderWidth: 1,
             displayColors: false,
             titleFont: {
-                size: 13,
+                size: 14,
                 weight: 'bold'
             },
             bodyFont: {
-                size: 12
+                size: 13
             },
             padding: 12,
             cornerRadius: 8,
@@ -136,7 +160,7 @@ export default function RecaudacionArgentinaChart() {
                         {formatBillions(totalRecaudacionUsd)}
                     </p>
                     <p className="text-xs text-slate-500">
-                        Mayor aporte: {itemPrincipal.finalidad}
+                        Mayor aporte: {getEmoji(itemPrincipal.finalidad)} {itemPrincipal.finalidad}
                     </p>
                 </div>
 
@@ -158,6 +182,7 @@ export default function RecaudacionArgentinaChart() {
                                     />
                                     <div className="min-w-0">
                                         <p className="text-sm font-bold leading-snug text-slate-800">
+                                            <span className="mr-2 inline-block align-middle">{getEmoji(detalle.finalidad)}</span>
                                             {detalle.finalidad}
                                         </p>
                                         <p className="mt-1 text-xs leading-snug text-slate-500">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pie } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
     ArcElement,
@@ -30,10 +30,35 @@ const itemPrincipal = detallesGastoAnual.reduce((max, detalle) => (
     detalle.porcentaje > max.porcentaje ? detalle : max
 ), detallesGastoAnual[0]);
 
+const getEmoji = (label) => {
+    const s = String(label || '').toLowerCase();
+    if (
+        s.includes('jubi') ||
+        s.includes('jubil') ||
+        s.includes('aporte') ||
+        s.includes('aportes') ||
+        s.includes('previs') ||
+        s.includes('previsional')
+    ) return '🧓';
+    if (s.includes('petr') || s.includes('oil') || s.includes('crudo')) return '🛢️';
+    if (s.includes('comerc') || s.includes('export') || s.includes('import') || s.includes('aduan')) return '🌎';
+    if (s.includes('impu') || s.includes('tax')) return '💸';
+    if (s.includes('salud') || s.includes('health')) return '🏥';
+    if (s.includes('educ') || s.includes('school')) return '🎓';
+    if (s.includes('energ') || s.includes('electric') || s.includes('gas')) return '⚡';
+    if (s.includes('defen') || s.includes('milit')) return '🛡️';
+    if (s.includes('trans') || s.includes('viaj') || s.includes('truck')) return '🚆';
+    if (s.includes('turis') || s.includes('vacac')) return '🏖️';
+    if (s.includes('agric') || s.includes('campo') || s.includes('rural')) return '🌾';
+    if (s.includes('indus') || s.includes('fabr')) return '🏭';
+    return '🔸';
+};
+
 const chartColors = ['#1d4ed8', '#0891b2', '#16a34a', '#f59e0b', '#8b5cf6', '#ef4444', '#f97316'];
+const softChartColors = ['#dbeafe', '#ccfbf1', '#bbf7d0', '#fef3c7', '#ede9fe', '#fee2e2', '#ffedd5'];
 
 const centerLabelPlugin = {
-    id: 'centerLabelPlugin',
+    id: 'gastoCenterLabel',
     afterDraw(chart) {
         const { ctx } = chart;
         const meta = chart.getDatasetMeta(0);
@@ -49,12 +74,16 @@ const centerLabelPlugin = {
         ctx.textBaseline = 'middle';
 
         ctx.fillStyle = '#0f172a';
-        ctx.font = '700 18px Inter, sans-serif';
-        ctx.fillText(`${itemPrincipal.porcentaje}%`, x, y - 8);
+        ctx.font = '700 26px Inter, sans-serif';
+        ctx.fillText(`${itemPrincipal.porcentaje}%`, x, y - 14);
 
         ctx.fillStyle = '#64748b';
-        ctx.font = '600 10px Inter, sans-serif';
-        ctx.fillText('Mayor peso', x, y + 12);
+        ctx.font = '600 12px Inter, sans-serif';
+        ctx.fillText('Mayor peso', x, y + 10);
+
+        ctx.fillStyle = '#1d4ed8';
+        ctx.font = '700 12px Inter, sans-serif';
+        ctx.fillText(formatBillions(totalGastoUsd), x, y + 30);
         ctx.restore();
     }
 };
@@ -65,9 +94,12 @@ const chartData = {
         {
             data: detallesGastoAnual.map((detalle) => detalle.porcentaje),
             backgroundColor: chartColors,
-            borderColor: '#ffffff',
-            borderWidth: 3,
-            hoverOffset: 12
+            borderColor: '#f8fafc',
+            borderRadius: 6,
+            borderWidth: 4,
+            hoverBorderColor: '#ffffff',
+            hoverOffset: 14,
+            spacing: 3
         }
     ]
 };
@@ -75,44 +107,26 @@ const chartData = {
 const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
-    cutout: '0%',
+    cutout: '66%',
+    rotation: -75,
+    layout: {
+        padding: 8
+    },
     plugins: {
         legend: {
-            position: 'right',
-            labels: {
-                usePointStyle: true,
-                pointStyle: 'circle',
-                boxWidth: 10,
-                boxHeight: 10,
-                padding: 16,
-                color: '#334155',
-                font: {
-                    size: 11,
-                    family: 'Inter, sans-serif'
-                },
-                generateLabels: (chart) =>
-                    chart.data.labels.map((label, index) => {
-                        const detalle = detallesGastoAnual[index];
-                        return {
-                            text: `${label} · ${detalle.porcentaje}% · ${formatBillions(detalle.montoUsd)}`,
-                            fillStyle: chartColors[index],
-                            strokeStyle: '#ffffff',
-                            lineWidth: 2,
-                            pointStyle: 'circle',
-                            hidden: false,
-                            index
-                        };
-                    })
-            }
+            display: false
         },
         tooltip: {
             backgroundColor: 'rgba(15, 23, 42, 0.95)',
+            borderColor: 'rgba(148, 163, 184, 0.35)',
+            borderWidth: 1,
+            displayColors: false,
             titleFont: {
-                size: 13,
+                size: 14,
                 weight: 'bold'
             },
             bodyFont: {
-                size: 12
+                size: 13
             },
             padding: 12,
             cornerRadius: 8,
@@ -132,14 +146,70 @@ const chartOptions = {
 
 export default function GastoAnualArgentinaChart() {
     return (
-        <div className="h-full w-full flex flex-col">
-            <div className="flex-1 min-h-0">
-                <Pie data={chartData} options={chartOptions} plugins={[centerLabelPlugin]} />
+        <div className="h-full w-full grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] gap-5 lg:gap-8">
+            <div className="min-h-72 lg:min-h-0 rounded-xl bg-gradient-to-br from-slate-50 via-white to-blue-50/60 border border-slate-100 p-4">
+                <Doughnut data={chartData} options={chartOptions} plugins={[centerLabelPlugin]} />
             </div>
 
-            <p className="text-center text-xs text-slate-400 mt-3 font-medium tracking-wide uppercase">
-                Total estimado: {formatBillions(totalGastoUsd)} · Mayor peso: {itemPrincipal.finalidad}
-            </p>
+            <div className="min-h-0 flex flex-col">
+                <div className="mb-4 border-l-4 border-blue-500 pl-4">
+                    <p className="text-[11px] font-bold uppercase tracking-wide text-blue-700">
+                        Total estimado
+                    </p>
+                    <p className="text-2xl font-black text-slate-900">
+                        {formatBillions(totalGastoUsd)}
+                    </p>
+                    <p className="text-xs text-slate-500">
+                        Mayor peso: {getEmoji(itemPrincipal.finalidad)} {itemPrincipal.finalidad}
+                    </p>
+                </div>
+
+                <div className="min-h-0 overflow-y-auto pr-1 space-y-3">
+                    {detallesGastoAnual.map((detalle, index) => (
+                        <div
+                            className="group rounded-lg border border-slate-200 bg-white/80 p-3 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+                            key={detalle.finalidad}
+                        >
+                            <div className="flex items-start justify-between gap-3">
+                                <div className="flex min-w-0 items-start gap-3">
+                                    <span
+                                        aria-hidden="true"
+                                        className="mt-1 h-3 w-3 shrink-0 rounded-full ring-4"
+                                        style={{
+                                            backgroundColor: chartColors[index],
+                                            '--tw-ring-color': softChartColors[index]
+                                        }}
+                                    />
+                                    <div className="min-w-0">
+                                        <p className="text-sm font-bold leading-snug text-slate-800">
+                                            <span className="mr-2 inline-block align-middle">{getEmoji(detalle.finalidad)}</span>
+                                            {detalle.finalidad}
+                                        </p>
+                                        <p className="mt-1 text-xs leading-snug text-slate-500">
+                                            {detalle.descripcion}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="shrink-0 text-right">
+                                    <p className="text-sm font-black text-slate-900">{detalle.porcentaje}%</p>
+                                    <p className="text-[11px] font-semibold text-slate-500">
+                                        {formatBillions(detalle.montoUsd)}
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-slate-100">
+                                <div
+                                    className="h-full rounded-full"
+                                    style={{
+                                        width: `${detalle.porcentaje}%`,
+                                        backgroundColor: chartColors[index]
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }
