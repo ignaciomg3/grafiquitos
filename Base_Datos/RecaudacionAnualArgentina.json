@@ -1,0 +1,43 @@
+{
+  "periodo": "Anual Consolidado (Estimado 2026)",
+  "moneda": "USD",
+  "recaudacion_total_anual_aproximada": 1020000000000,
+  "detalles": [
+    {
+      "concepto": "IVA (Impuesto al Valor Agregado)",
+      "categoria": "Impuestos al Consumo",
+      "porcentaje_aproximado": 33.0,
+      "monto_usd_aproximado": 33660000000
+    },
+    {
+      "concepto": "Aportes y Contribuciones a la Seguridad Social",
+      "categoria": "Trabajo y Previsión",
+      "porcentaje_aproximado": 22.0,
+      "monto_usd_aproximado": 22440000000
+    },
+    {
+      "concepto": "Impuesto a las Ganancias",
+      "categoria": "Impuestos a los Ingresos",
+      "porcentaje_aproximado": 20.0,
+      "monto_usd_aproximado": 20400000000
+    },
+    {
+      "concepto": "Derechos de Comercio Exterior (Retenciones y Aranceles)",
+      "categoria": "Aduana y Comercio",
+      "porcentaje_aproximado": 10.0,
+      "monto_usd_aproximado": 10200000000
+    },
+    {
+      "concepto": "Impuesto a los Créditos y Débitos (Cheque)",
+      "categoria": "Impuestos Financieros",
+      "porcentaje_aproximado": 7.0,
+      "monto_usd_aproximado": 7140000000
+    },
+    {
+      "concepto": "Otros Impuestos y Tasas (Combustibles, PAIS, etc.)",
+      "categoria": "Otros",
+      "porcentaje_aproximado": 8.0,
+      "monto_usd_aproximado": 8160000000
+    }
+  ]
+}

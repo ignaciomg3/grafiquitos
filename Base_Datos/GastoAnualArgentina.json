@@ -1,0 +1,49 @@
+{
+  "periodo": "Anual Consolidado (Estimado 2026)",
+  "moneda": "USD",
+  "gasto_total_anual_base": 1020000000000,
+  "detalles": [
+    {
+      "finalidad": "Seguridad Social",
+      "descripcion": "Jubilaciones, pensiones, asignaciones y planes sociales",
+      "porcentaje_aproximado": 56.5,
+      "monto_usd_aproximado": 57630000000
+    },
+    {
+      "finalidad": "Servicios Económicos y Subsidios",
+      "descripcion": "Subsidios a energía (luz/gas), transporte y obra pública",
+      "porcentaje_aproximado": 11.5,
+      "monto_usd_aproximado": 11730000000
+    },
+    {
+      "finalidad": "Deuda Pública",
+      "descripcion": "Pago de intereses de la deuda interna y externa",
+      "porcentaje_aproximado": 10.0,
+      "monto_usd_aproximado": 10200000000
+    },
+    {
+      "finalidad": "Educación, Ciencia y Técnica",
+      "descripcion": "Universidades nacionales, Conicet y programas educativos",
+      "porcentaje_aproximado": 7.0,
+      "monto_usd_aproximado": 7140000000
+    },
+    {
+      "finalidad": "Salud",
+      "descripcion": "Hospitales federales, PAMI, vacunas y programas sanitarios",
+      "porcentaje_aproximado": 5.0,
+      "monto_usd_aproximado": 5100000000
+    },
+    {
+      "finalidad": "Defensa y Seguridad",
+      "descripcion": "Fuerzas federales, policía, gendarmería y fronteras",
+      "porcentaje_aproximado": 5.0,
+      "monto_usd_aproximado": 5100000000
+    },
+    {
+      "finalidad": "Administración Central y Justicia",
+      "descripcion": "Funcionamiento de los Poderes Ejecutivo, Legislativo y Judicial",
+      "porcentaje_aproximado": 5.0,
+      "monto_usd_aproximado": 5100000000
+    }
+  ]
+}

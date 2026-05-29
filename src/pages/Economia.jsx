@@ -5,6 +5,7 @@ import PetroleoChart from '../components/Charts/Economia/PetroleoChart';
 import SalarioAlquilerChart from '../components/Charts/Economia/SalarioAlquilerChart';
 import TopPbiChart from '../components/Charts/Economia/TopPbiChart';
 import RecaudacionArgentinaChart from '../components/Charts/Economia/RecaudacionArgentinaChart';
+import GastoAnualArgentinaChart from '../components/Charts/Economia/GastoAnualArgentinaChart';
 
 export default function Economia() {
     return (
@@ -109,10 +110,24 @@ export default function Economia() {
                 </section>
 
                 <section className="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-slate-100 md:col-span-2">
-                    <h2 className="text-base sm:text-lg md:text-xl font-bold mb-1">Gasto Anual del Estado Argentino (USD)</h2>
-                    <p className="text-slate-500 text-xs sm:text-sm mb-4">Distribucion estimada 2026 por finalidad del gasto publico (porcentaje sobre el total).</p>
+                    <h2 className="text-base sm:text-lg md:text-xl font-bold mb-1">Recaudacion Anual de Argentina (USD)</h2>
+                    <p className="text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed mb-4 max-w-4xl">
+                        Distribucion estimada 2026 de los principales conceptos de recaudacion, con porcentajes visibles,
+                        descripciones por rubro y el detalle equivalente en USD.
+                    </p>
                     <div className="h-[30rem] w-full">
                         <RecaudacionArgentinaChart />
+                    </div>
+                </section>
+
+                <section className="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-slate-100 md:col-span-2">
+                    <h2 className="text-base sm:text-lg md:text-xl font-bold mb-1">Gasto Anual del Estado Argentino (USD)</h2>
+                    <p className="text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed mb-4 max-w-4xl">
+                        Distribucion estimada 2026 por finalidad del gasto publico, mostrada en un grafico de torta con
+                        porcentajes visibles, descripciones por rubro y su equivalente aproximado en USD.
+                    </p>
+                    <div className="h-[30rem] w-full">
+                        <GastoAnualArgentinaChart />
                     </div>
                 </section>
             </div>
