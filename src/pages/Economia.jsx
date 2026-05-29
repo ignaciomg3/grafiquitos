@@ -109,8 +109,8 @@ export default function Economia() {
                 </section>
 
                 <section className="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-slate-100 md:col-span-2">
-                    <h2 className="text-base sm:text-lg md:text-xl font-bold mb-1">Recaudacion Anual del Estado Argentino (USD)</h2>
-                    <p className="text-slate-500 text-xs sm:text-sm mb-4">Distribucion estimada 2026 por concepto tributario (porcentaje sobre el total).</p>
+                    <h2 className="text-base sm:text-lg md:text-xl font-bold mb-1">Gasto Anual del Estado Argentino (USD)</h2>
+                    <p className="text-slate-500 text-xs sm:text-sm mb-4">Distribucion estimada 2026 por finalidad del gasto publico (porcentaje sobre el total).</p>
                     <div className="h-[30rem] w-full">
                         <RecaudacionArgentinaChart />
                     </div>
