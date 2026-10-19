@@ -7,6 +7,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Scatter } from 'react-chartjs-2';
+import branding from '../../../theme/branding';
 
 ChartJS.register(
   LinearScale,
@@ -54,9 +55,9 @@ const wrapLabel = (label) => {
 const chartLabels = processedData.map(d => wrapLabel(d.puesto));
 
 const chartColors = {
-  opportunity: '#F43F5E',
-  grid: 'rgba(51, 65, 85, 0.4)',
-  text: '#94A3B8'
+  opportunity: branding.colors.states.error,
+  grid: branding.charts.gridSoft,
+  text: branding.colors.text.muted
 };
 
 const options = {
@@ -68,7 +69,7 @@ const options = {
       display: false
     },
     tooltip: {
-      backgroundColor: 'rgba(15, 23, 42, 0.9)',
+      backgroundColor: branding.charts.tooltipBg,
       titleFont: { family: 'Inter', size: 14 },
       bodyFont: { family: 'Inter', size: 13 },
       padding: 12,
@@ -111,7 +112,7 @@ const data = {
       labelRaw: chartLabels[index]
     })),
     backgroundColor: chartColors.opportunity,
-    borderColor: '#FFFFFF',
+    borderColor: branding.charts.white,
     borderWidth: 1,
     pointRadius: 8,
     pointHoverRadius: 10

@@ -10,6 +10,7 @@ import {
     Filler
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import branding from '../../../theme/branding';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend, Filler);
 
@@ -37,10 +38,10 @@ const data = {
         {
             label: 'Desaprueba',
             data: desaprobacion,
-            borderColor: '#dc2626',
+            borderColor: branding.charts.politica.desaprobacion,
             backgroundColor: (context) => makeGradient(context, 'rgba(220, 38, 38, 0.22)'),
-            pointBackgroundColor: '#ffffff',
-            pointBorderColor: '#dc2626',
+            pointBackgroundColor: branding.charts.white,
+            pointBorderColor: branding.charts.politica.desaprobacion,
             pointBorderWidth: 3,
             pointHoverRadius: 6,
             pointRadius: 4,
@@ -51,10 +52,10 @@ const data = {
         {
             label: 'Aprueba',
             data: aprobacion,
-            borderColor: '#2563eb',
+            borderColor: branding.charts.politica.aprobacion,
             backgroundColor: (context) => makeGradient(context, 'rgba(37, 99, 235, 0.18)'),
-            pointBackgroundColor: '#ffffff',
-            pointBorderColor: '#2563eb',
+            pointBackgroundColor: branding.charts.white,
+            pointBorderColor: branding.charts.politica.aprobacion,
             pointBorderWidth: 3,
             pointHoverRadius: 6,
             pointRadius: 4,
@@ -79,7 +80,7 @@ const options = {
             labels: {
                 boxWidth: 9,
                 boxHeight: 9,
-                color: '#334155',
+                color: branding.colors.text.secondary,
                 font: {
                     size: 12,
                     family: 'Inter, sans-serif',
@@ -89,8 +90,8 @@ const options = {
             }
         },
         tooltip: {
-            backgroundColor: 'rgba(15, 23, 42, 0.95)',
-            borderColor: 'rgba(148, 163, 184, 0.35)',
+            backgroundColor: branding.charts.tooltipBg,
+            borderColor: branding.charts.tooltipBorder,
             borderWidth: 1,
             padding: 12,
             cornerRadius: 8,
@@ -108,7 +109,7 @@ const options = {
                 display: false
             },
             ticks: {
-                color: '#64748b',
+                color: branding.charts.axis,
                 font: {
                     size: 11,
                     weight: '700'
@@ -122,7 +123,7 @@ const options = {
             min: 30,
             max: 60,
             ticks: {
-                color: '#64748b',
+                color: branding.charts.axis,
                 font: {
                     size: 11,
                     weight: '700'
@@ -130,7 +131,7 @@ const options = {
                 callback: (value) => `${value}%`
             },
             grid: {
-                color: 'rgba(148, 163, 184, 0.18)',
+                color: branding.charts.grid,
                 drawTicks: false
             },
             border: {

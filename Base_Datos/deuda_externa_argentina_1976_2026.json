@@ -1,0 +1,50 @@
+{
+  "Titulo": "Deuda externa total de Argentina cada 10 anos (1976-2026)",
+  "descripcion": "Stock de deuda externa total de Argentina en intervalos de diez anos desde 1976 hasta 2026 inclusive. La serie se expresa en dolares estadounidenses corrientes.",
+  "pais": "Argentina",
+  "indicador": "External debt stocks, total (DOD, current US$)",
+  "unidad": "Dolares estadounidenses corrientes",
+  "periodo": "1976-2026",
+  "intervalo_anios": 10,
+  "ultima_observacion_disponible": 2024,
+  "ultima_actualizacion": "2026-07-13",
+  "tipo_dato": "mixto",
+  "datos": [
+    {
+      "anio": 1976,
+      "deuda_externa_usd": 9501611014.5,
+      "estado": "observado"
+    },
+    {
+      "anio": 1986,
+      "deuda_externa_usd": 52688148843.8,
+      "estado": "observado"
+    },
+    {
+      "anio": 1996,
+      "deuda_externa_usd": 111145506414,
+      "estado": "observado"
+    },
+    {
+      "anio": 2006,
+      "deuda_externa_usd": 118921233033.8,
+      "estado": "observado"
+    },
+    {
+      "anio": 2016,
+      "deuda_externa_usd": 181637286190.7,
+      "estado": "observado"
+    },
+    {
+      "anio": 2026,
+      "deuda_externa_usd": null,
+      "estado": "no disponible"
+    }
+  ],
+  "limitaciones": [
+    "El dato de 2026 no esta disponible en la fuente oficial consultada y se representa con null.",
+    "La ultima observacion disponible de la serie es 2024, por lo que no se extrapola un valor para 2026.",
+    "La deuda externa total no equivale a la deuda publica total ni a la deuda bruta del gobierno general.",
+    "Los valores estan expresados en dolares corrientes y no estan ajustados por inflacion."
+  ]
+}

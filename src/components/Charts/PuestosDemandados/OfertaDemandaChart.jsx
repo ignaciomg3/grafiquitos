@@ -8,6 +8,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import branding from '../../../theme/branding';
 
 ChartJS.register(
   CategoryScale,
@@ -56,11 +57,11 @@ const wrapLabel = (label) => {
 const chartLabels = processedData.map(d => wrapLabel(d.puesto));
 
 const chartColors = {
-  demand: '#00b0dcff',
-  supply: '#b2b564ff',
-  opportunity: '#74bd7fff',
-  grid: 'rgba(51, 65, 85, 0.4)',
-  text: '#94A3B8'
+  demand: branding.charts.puestos.demanda,
+  supply: branding.charts.puestos.oferta,
+  opportunity: branding.charts.puestos.oportunidad,
+  grid: branding.charts.gridSoft,
+  text: branding.colors.text.muted
 };
 
 const options = {
@@ -72,7 +73,7 @@ const options = {
       labels: { color: chartColors.text, font: { family: 'Inter', size: 13 } }
     },
     tooltip: {
-      backgroundColor: 'rgba(15, 23, 42, 0.9)',
+      backgroundColor: branding.charts.tooltipBg,
       titleFont: { family: 'Inter', size: 14 },
       bodyFont: { family: 'Inter', size: 13 },
       padding: 12,

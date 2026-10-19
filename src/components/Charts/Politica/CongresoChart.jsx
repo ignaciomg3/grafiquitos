@@ -6,14 +6,15 @@ import {
     Legend
 } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import branding from '../../../theme/branding';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const grupos = [
-    { label: 'Oficialismo', bancas: 120, color: '#7c3aed', softColor: '#ede9fe' },
-    { label: 'Oposicion principal', bancas: 95, color: '#f59e0b', softColor: '#fef3c7' },
-    { label: 'Tercera via', bancas: 30, color: '#0284c7', softColor: '#e0f2fe' },
-    { label: 'Independientes', bancas: 12, color: '#64748b', softColor: '#e2e8f0' }
+    { label: 'Oficialismo', bancas: 120, color: branding.charts.politica.bloques[0], softColor: branding.charts.politica.softBloques[0] },
+    { label: 'Oposicion principal', bancas: 95, color: branding.charts.politica.bloques[1], softColor: branding.charts.politica.softBloques[1] },
+    { label: 'Tercera via', bancas: 30, color: branding.charts.politica.bloques[2], softColor: branding.charts.politica.softBloques[2] },
+    { label: 'Independientes', bancas: 12, color: branding.charts.politica.bloques[3], softColor: branding.charts.politica.softBloques[3] }
 ];
 
 const totalBancas = grupos.reduce((sum, grupo) => sum + grupo.bancas, 0);
@@ -34,10 +35,10 @@ const centerLabelPlugin = {
         ctx.save();
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillStyle = '#0f172a';
+        ctx.fillStyle = branding.colors.text.primary;
         ctx.font = '800 22px Inter, sans-serif';
         ctx.fillText(totalBancas, x, y - 8);
-        ctx.fillStyle = '#64748b';
+        ctx.fillStyle = branding.colors.text.muted;
         ctx.font = '700 11px Inter, sans-serif';
         ctx.fillText('bancas', x, y + 12);
         ctx.restore();
@@ -49,10 +50,10 @@ const data = {
     datasets: [{
         data: grupos.map((grupo) => grupo.bancas),
         backgroundColor: grupos.map((grupo) => grupo.color),
-        borderColor: '#f8fafc',
+        borderColor: branding.colors.text.inverse,
         borderRadius: 6,
         borderWidth: 4,
-        hoverBorderColor: '#ffffff',
+        hoverBorderColor: branding.charts.white,
         hoverOffset: 12,
         spacing: 3
     }]
@@ -67,8 +68,8 @@ const options = {
             display: false
         },
         tooltip: {
-            backgroundColor: 'rgba(15, 23, 42, 0.95)',
-            borderColor: 'rgba(148, 163, 184, 0.35)',
+            backgroundColor: branding.charts.tooltipBg,
+            borderColor: branding.charts.tooltipBorder,
             borderWidth: 1,
             displayColors: false,
             padding: 12,

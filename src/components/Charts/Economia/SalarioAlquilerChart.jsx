@@ -9,6 +9,7 @@ import {
     Tooltip,
     Legend
 } from 'chart.js';
+import branding from '../../../theme/branding';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
@@ -117,26 +118,26 @@ export default function SalarioAlquilerChart() {
             {
                 label: '\u{1F4B5} Salario promedio',
                 data: salarySeries,
-                borderColor: '#0f766e',
-                backgroundColor: '#0f766e',
+                borderColor: branding.charts.economia.salario,
+                backgroundColor: branding.charts.economia.salario,
                 borderWidth: sizes.lineWidth,
                 pointRadius: sizes.point,
                 pointHoverRadius: sizes.hoverPoint,
-                pointBackgroundColor: '#ffffff',
-                pointBorderColor: '#0f766e',
+                pointBackgroundColor: branding.charts.white,
+                pointBorderColor: branding.charts.economia.salario,
                 pointBorderWidth: 2,
                 tension: 0.25
             },
             {
                 label: '\u{1F3E0} Alquiler 2 amb. CABA',
                 data: rentSeries,
-                borderColor: '#ea580c',
-                backgroundColor: '#ea580c',
+                borderColor: branding.charts.economia.alquiler,
+                backgroundColor: branding.charts.economia.alquiler,
                 borderWidth: sizes.lineWidth,
                 pointRadius: sizes.point,
                 pointHoverRadius: sizes.hoverPoint,
-                pointBackgroundColor: '#ffffff',
-                pointBorderColor: '#ea580c',
+                pointBackgroundColor: branding.charts.white,
+                pointBorderColor: branding.charts.economia.alquiler,
                 pointBorderWidth: 2,
                 tension: 0.25
             }
@@ -158,7 +159,7 @@ export default function SalarioAlquilerChart() {
                     usePointStyle: true,
                     boxWidth: 12,
                     padding: sizes.legendPadding,
-                    color: '#334155',
+                    color: branding.colors.text.secondary,
                     font: {
                         size: sizes.legend,
                         weight: 600
@@ -166,10 +167,10 @@ export default function SalarioAlquilerChart() {
                 }
             },
             tooltip: {
-                backgroundColor: 'rgba(15, 23, 42, 0.94)',
+                backgroundColor: branding.charts.tooltipBg,
                 padding: sizes.tooltipPadding,
                 cornerRadius: 10,
-                titleColor: '#f8fafc',
+                titleColor: branding.colors.text.inverse,
                 bodyColor: '#e2e8f0',
                 titleFont: {
                     size: sizes.tooltipTitle,
@@ -190,7 +191,7 @@ export default function SalarioAlquilerChart() {
                     display: false
                 },
                 ticks: {
-                    color: '#64748b',
+                    color: branding.charts.axis,
                     font: {
                         size: sizes.tick
                     },
@@ -209,10 +210,10 @@ export default function SalarioAlquilerChart() {
                 beginAtZero: true,
                 suggestedMax: 1400,
                 grid: {
-                    color: '#e2e8f0'
+                    color: branding.charts.grid
                 },
                 ticks: {
-                    color: '#64748b',
+                    color: branding.charts.axis,
                     font: {
                         size: sizes.tick
                     },

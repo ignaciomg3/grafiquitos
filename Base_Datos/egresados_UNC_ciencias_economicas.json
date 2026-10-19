@@ -1,0 +1,10 @@
+{
+    "universidad": "Universidad Nacional de Córdoba (UNC)",
+    "año_referencia": 2025,
+    "fuente": "UNC en Cifras - Universidad Abierta",
+    "facultad": {
+        "nombre": "Facultad de Ciencias Económicas",
+        "ingresantes": 3036,
+        "egresados": 969
+    }
+}

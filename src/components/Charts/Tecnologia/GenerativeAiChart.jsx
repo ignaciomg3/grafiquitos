@@ -6,6 +6,7 @@ import {
     Tooltip,
     Legend
 } from 'chart.js';
+import branding from '../../../theme/branding';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -14,7 +15,7 @@ export default function GenerativeAiChart() {
         labels: ['A gran escala', 'Piloto', 'En evaluación', 'Sin planes'],
         datasets: [{
             data: [25, 35, 30, 10],
-            backgroundColor: ['#8b5cf6', '#a78bfa', '#c4b5fd', '#ede9fe'],
+            backgroundColor: branding.charts.violetScale,
             borderWidth: 0
         }]
     };

@@ -11,6 +11,7 @@ import {
     Filler,
     Legend
 } from 'chart.js';
+import branding from '../../../theme/branding';
 
 ChartJS.register(
     CategoryScale,
@@ -29,7 +30,7 @@ export default function IotChart() {
         datasets: [{
             label: 'Miles de Millones',
             data: [13.1, 15.1, 17.5, 20.2, 23.4],
-            borderColor: '#06b6d4',
+            borderColor: branding.charts.tecnologia.iot,
             backgroundColor: 'rgba(6, 182, 212, 0.1)',
             fill: true,
             tension: 0.3

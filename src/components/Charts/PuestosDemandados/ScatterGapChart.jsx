@@ -7,6 +7,7 @@ import {
     Legend
 } from 'chart.js';
 import { Bubble } from 'react-chartjs-2';
+import branding from '../../../theme/branding';
 
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend);
 
@@ -36,8 +37,8 @@ export default function ScatterGapChart() {
         datasets: [{
             label: 'Puestos (Tamaño = Brecha)',
             data: scatterData,
-            backgroundColor: 'rgba(245, 158, 11, 0.7)',
-            borderColor: '#F59E0B',
+            backgroundColor: branding.charts.puestos.scatterFill,
+            borderColor: branding.charts.puestos.scatter,
             borderWidth: 1
         }]
     };
@@ -60,18 +61,18 @@ export default function ScatterGapChart() {
                         ];
                     }
                 },
-                backgroundColor: 'rgba(17, 24, 39, 0.9)',
+                backgroundColor: branding.charts.tooltipBg,
                 padding: 10
             }
         },
         scales: {
             x: {
                 title: { display: true, text: 'Oferta de Profesionales (Disponibles)' },
-                grid: { color: '#f3f4f6' }
+                grid: { color: branding.charts.grid }
             },
             y: {
                 title: { display: true, text: 'Demanda de Mercado (Vacantes)' },
-                grid: { color: '#f3f4f6' }
+                grid: { color: branding.charts.grid }
             }
         }
     };

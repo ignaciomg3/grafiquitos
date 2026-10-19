@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import * as echarts from 'echarts';
+import branding from '../../../theme/branding';
 
 export default function RamEcharts() {
     const chartRef = useRef(null);
@@ -26,8 +27,8 @@ export default function RamEcharts() {
             const optionEcharts = {
                 tooltip: {
                     trigger: 'axis',
-                    backgroundColor: 'rgba(255, 255, 255, 0.98)',
-                    borderColor: '#ede9fe',
+                    backgroundColor: branding.charts.tooltipBgLight,
+                    borderColor: branding.charts.softSeries[4],
                     borderWidth: 1,
                     textStyle: { color: '#1e293b', fontFamily: 'Inter' },
                     padding: [16, 20],
@@ -96,8 +97,8 @@ export default function RamEcharts() {
                         lineStyle: {
                             width: 5,
                             color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                                { offset: 0, color: '#146B4F' },
-                                { offset: 1, color: '#3BCF8E' }
+                                { offset: 0, color: branding.colors.brand.primary },
+                                { offset: 1, color: '#3bcf8e' }
                             ]),
                             shadowColor: 'rgba(20, 107, 79, 0.4)',
                             shadowBlur: 15,

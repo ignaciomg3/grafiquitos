@@ -8,6 +8,7 @@ import {
     Legend
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import branding from '../../../theme/branding';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
@@ -55,19 +56,19 @@ export default function MainBarChart() {
             {
                 label: ' Demanda',
                 data: processedData.map(j => j.demanda),
-                backgroundColor: '#00b0dcff',
+                backgroundColor: branding.charts.puestos.demanda,
                 borderRadius: 4,
             },
             {
                 label: ' Oferta',
                 data: processedData.map(j => j.oferta),
-                backgroundColor: '#8864b5ff',
+                backgroundColor: branding.charts.puestos.oferta,
                 borderRadius: 4,
             },
             {
                 label: ' Oportunidad',
                 data: processedData.map(j => j.oportunidad),
-                backgroundColor: '#74bd7fff',
+                backgroundColor: branding.charts.puestos.oportunidad,
                 borderRadius: 4,
             }
         ]
@@ -95,14 +96,14 @@ export default function MainBarChart() {
         scales: {
             y: {
                 beginAtZero: true,
-                grid: { color: '#e5e7eb' },
+                grid: { color: branding.charts.grid },
                 title: { display: true, text: 'Cantidad de Puestos', font: { size: 14, weight: 'bold' } },
                 ticks: { font: { size: 12 } }
             },
             x: {
                 grid: { display: false },
                 ticks: {
-                    color: '#4b5563',
+                    color: branding.charts.axis,
                     font: { weight: 'bold', size: 12 },
                     maxRotation: 45,
                     minRotation: 0,

@@ -12,6 +12,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import lifeExpectancyData from '../../../../Base_Datos/Esperanza_de_vida.json';
+import branding from '../../../theme/branding';
 
 ChartJS.register(
     CategoryScale,
@@ -34,9 +35,9 @@ export default function EsperanzaVidaChart() {
             {
                 label: ' Mujer ',
                 data: lifeExpectancyData.map(item => item.mujer),
-                borderColor: '#ec4899', // Pink
-                backgroundColor: 'rgba(236, 72, 153, 0.1)',
-                pointBackgroundColor: '#ec4899',
+                borderColor: branding.charts.humanidades.mujer,
+                backgroundColor: branding.charts.humanidades.mujerFill,
+                pointBackgroundColor: branding.charts.humanidades.mujer,
                 borderWidth: 3,
                 tension: 0.4,
                 fill: true,
@@ -47,9 +48,9 @@ export default function EsperanzaVidaChart() {
             {
                 label: ' Hombre',
                 data: lifeExpectancyData.map(item => item.hombre),
-                borderColor: '#3b82f6', // Blue
-                backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                pointBackgroundColor: '#3b82f6',
+                borderColor: branding.charts.humanidades.hombre,
+                backgroundColor: branding.charts.humanidades.hombreFill,
+                pointBackgroundColor: branding.charts.humanidades.hombre,
                 borderWidth: 3,
                 tension: 0.4,
                 fill: true,
@@ -75,7 +76,7 @@ export default function EsperanzaVidaChart() {
             tooltip: {
                 mode: 'index',
                 intersect: false,
-                backgroundColor: 'rgba(17, 24, 39, 0.9)',
+                backgroundColor: branding.charts.tooltipBg,
                 padding: 10,
                 titleFont: { size: 14 },
                 bodyFont: { size: 13 },
@@ -90,19 +91,19 @@ export default function EsperanzaVidaChart() {
             x: {
                 grid: { display: false },
                 ticks: {
-                    color: '#4b5563',
+                    color: branding.charts.axis,
                     font: { weight: 'bold', size: 15 }
                 }
             },
             y: {
                 beginAtZero: false,
-                grid: { color: '#e5e7eb' },
+                grid: { color: branding.charts.grid },
                 title: { 
                     display: true, 
                     text: 'Esperanza de Vida (años)', 
                     font: { size: 16, weight: 'bold' } 
                 },
-                ticks: { font: { size: 15 } }
+                ticks: { color: branding.charts.axis, font: { size: 15 } }
             }
         },
         interaction: {

@@ -10,6 +10,7 @@ import {
     Filler,
     Legend
 } from 'chart.js';
+import branding from '../../../theme/branding';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Filler, Legend);
 
@@ -41,13 +42,13 @@ export default function InflacionChart() {
         datasets: [{
             label: 'Inflación Mensual %',
             data: inflationData,
-            borderColor: '#ef4444',
-            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+            borderColor: branding.charts.economia.inflacion,
+            backgroundColor: branding.charts.economia.inflacionFill,
             fill: true,
             tension: 0.3,
             borderWidth: 2,
-            pointBackgroundColor: '#ffffff',
-            pointBorderColor: '#ef4444',
+            pointBackgroundColor: branding.charts.white,
+            pointBorderColor: branding.charts.economia.inflacion,
             pointRadius: 0,
             pointHoverRadius: 5,
             pointHitRadius: 10
@@ -62,15 +63,15 @@ export default function InflacionChart() {
                 grid: { display: false },
                 ticks: {
                     maxTicksLimit: 12,
-                    color: '#64748b',
+                    color: branding.charts.axis,
                     font: { size: 11 }
                 }
             },
             y: {
                 beginAtZero: true,
-                grid: { color: '#f1f5f9' },
+                grid: { color: branding.charts.grid },
                 ticks: {
-                    color: '#64748b',
+                    color: branding.charts.axis,
                     font: { size: 11 },
                     callback: (value) => value + '%'
                 }
@@ -79,7 +80,7 @@ export default function InflacionChart() {
         plugins: {
             legend: { display: false },
             tooltip: {
-                backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                backgroundColor: branding.charts.tooltipBg,
                 padding: 12,
                 cornerRadius: 8,
                 callbacks: {

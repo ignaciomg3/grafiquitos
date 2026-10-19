@@ -8,6 +8,7 @@ import {
     Tooltip,
     Legend
 } from 'chart.js';
+import branding from '../../../theme/branding';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
@@ -15,8 +16,8 @@ export default function PibChart() {
     const data = (canvas) => {
         const ctx = canvas.getContext('2d');
         const gradientPib = ctx.createLinearGradient(0, 0, 0, 400);
-        gradientPib.addColorStop(0, '#34d399');
-        gradientPib.addColorStop(1, '#059669');
+        gradientPib.addColorStop(0, branding.charts.series[2]);
+        gradientPib.addColorStop(1, branding.colors.brand.primary);
 
         return {
             labels: ['EE.UU.', 'Eurozona', 'China', 'Japón', 'Latam'],
@@ -35,7 +36,7 @@ export default function PibChart() {
         plugins: { legend: { display: false } },
         scales: {
             x: { grid: { display: false } },
-            y: { grid: { color: '#f1f5f9' } }
+            y: { grid: { color: branding.charts.grid } }
         }
     };
 

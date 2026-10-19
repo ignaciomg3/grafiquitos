@@ -1,0 +1,18 @@
+{
+  "Titulo": "Cantidad estimada de nacimientos en Argentina por intervalo de 10 años",
+  "descripcion": "Estimacion de nacimientos en Argentina en intervalos de 10 años.",
+  "pais": "Argentina",
+  "unidad": "nacimientos",
+  "periodo": "1975-2025",
+  "intervalo_anios": 10,
+  "ultima_actualizacion": "2026-08-25",
+  "tipo_dato": "estimado",
+  "_comment": "anio 195  nac 544474, anio 1985 nac 650058.",
+  "datos": [
+    
+    { "anio": 1995, "nacimientos": 694857 },
+    { "anio": 2005, "nacimientos": 712215 },
+    { "anio": 2015, "nacimientos": 770310 },
+    { "anio": 2025, "nacimientos": 405200 }
+  ]
+}

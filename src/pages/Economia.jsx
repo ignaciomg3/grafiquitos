@@ -6,6 +6,8 @@ import SalarioAlquilerChart from '../components/Charts/Economia/SalarioAlquilerC
 import TopPbiChart from '../components/Charts/Economia/TopPbiChart';
 import RecaudacionArgentinaChart from '../components/Charts/Economia/RecaudacionArgentinaChart';
 import GastoAnualArgentinaChart from '../components/Charts/Economia/GastoAnualArgentinaChart';
+import DeudaExternaArgentinaChart from '../components/Charts/Economia/DeudaExternaArgentinaChart';
+import NacimientosArgentinaChart from '../components/Charts/Economia/NacimientosArgentinaChart';
 
 export default function Economia() {
     return (
@@ -74,7 +76,45 @@ export default function Economia() {
                 <section className="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-slate-100 md:col-span-2">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
                         <div>
-                            <h2 className="text-base sm:text-lg md:text-xl font-bold text-slate-800 mb-1">{'\u{1F6E2}'} Precio del Petroleo (USD/barril)</h2>
+                            <h2 className="text-base sm:text-lg md:text-xl font-bold text-slate-800 mb-1">Deuda Externa de Argentina</h2>
+                            <p className="text-slate-500 text-xs sm:text-sm">Stock de deuda externa total en dolares corrientes, con intervalos de 10 anos (1976-2026).</p>
+                        </div>
+                        <span className="inline-flex w-fit bg-rose-50 text-rose-700 font-semibold px-3 py-1 rounded-full text-[11px] sm:text-xs border border-rose-200">
+                            Serie historica
+                        </span>
+                    </div>
+
+                    <div className="h-72 sm:h-80 md:h-96 w-full">
+                        <DeudaExternaArgentinaChart />
+                    </div>
+
+                    <p className="text-[11px] sm:text-xs text-slate-500 mt-4 leading-relaxed">
+                        El valor de 2026 no esta disponible en la fuente consultada y se muestra como dato faltante, no como cero.
+                    </p>
+                </section>
+
+                <section className="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-slate-100 md:col-span-2">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+                        <div>                            <h2 className="text-base sm:text-lg md:text-xl font-bold text-slate-800 mb-1">Nacimientos en Argentina</h2>
+                            <p className="text-slate-500 text-xs sm:text-sm">Cantidad estimada por intervalo de 10 años, desde 1975 hasta 2025.</p>
+                        </div>
+                        <span className="inline-flex w-fit bg-sky-50 text-sky-700 font-semibold px-3 py-1 rounded-full text-[11px] sm:text-xs border border-sky-200">
+                            Poblacion y natalidad
+                        </span>
+                    </div>
+
+                    <div className="h-72 sm:h-80 md:h-96 w-full">
+                        <NacimientosArgentinaChart />
+                    </div>
+
+                    <p className="text-[11px] sm:text-xs text-slate-500 mt-4 leading-relaxed">
+                        Estimacion basada en la tasa bruta de natalidad.
+                    </p>
+                </section>
+
+                <section className="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-slate-100 md:col-span-2">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+                        <div>                            <h2 className="text-base sm:text-lg md:text-xl font-bold text-slate-800 mb-1">{'\u{1F6E2}'} Precio del Petroleo (USD/barril)</h2>
                             <p className="text-slate-500 text-xs sm:text-sm"></p>
                         </div>
                         <span className="inline-flex w-fit bg-cyan-50 text-cyan-700 font-semibold px-3 py-1 rounded-full text-[11px] sm:text-xs border border-cyan-200">

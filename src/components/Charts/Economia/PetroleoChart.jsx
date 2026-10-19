@@ -11,6 +11,7 @@ import {
     Filler
 } from 'chart.js';
 import oilData from '../../../../Base_Datos/petroleo.json';
+import branding from '../../../theme/branding';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend, Filler);
 
@@ -30,7 +31,7 @@ const yAxisMax = Math.ceil(maxPrice / 20) * 20;
 
 function priceToColor(price) {
     if (maxPrice === minPrice) {
-        return 'rgb(8, 145, 178)';
+        return branding.charts.economia.oilLow;
     }
 
     // From cyan (low) to red (high)
@@ -61,13 +62,13 @@ export default function PetroleoChart() {
                     const { ctx, chartArea } = chart;
 
                     if (!chartArea) {
-                        return 'rgba(8, 145, 178, 0.12)';
+                        return branding.charts.economia.oilFillLow;
                     }
 
                     const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
-                    gradient.addColorStop(0, 'rgba(220, 38, 38, 0.24)');
-                    gradient.addColorStop(0.5, 'rgba(234, 88, 12, 0.14)');
-                    gradient.addColorStop(1, 'rgba(8, 145, 178, 0.08)');
+                    gradient.addColorStop(0, branding.charts.economia.oilGradientHigh);
+                    gradient.addColorStop(0.5, branding.charts.economia.oilGradientMid);
+                    gradient.addColorStop(1, branding.charts.economia.oilGradientLow);
                     return gradient;
                 },
                 fill: true,
@@ -96,7 +97,7 @@ export default function PetroleoChart() {
                 display: false
             },
             tooltip: {
-                backgroundColor: 'rgba(15, 23, 42, 0.92)',
+                backgroundColor: branding.charts.tooltipBg,
                 padding: 12,
                 cornerRadius: 8,
                 callbacks: {
@@ -109,7 +110,7 @@ export default function PetroleoChart() {
             x: {
                 grid: { display: false },
                 ticks: {
-                    color: '#475569',
+                    color: branding.charts.axis,
                     font: { size: 12, weight: 'bold' }
                 }
             },
@@ -117,10 +118,10 @@ export default function PetroleoChart() {
                 beginAtZero: false,
                 min: yAxisMin,
                 max: yAxisMax,
-                grid: { color: '#e2e8f0' },
+                grid: { color: branding.charts.grid },
                 ticks: {
                     stepSize: 20,
-                    color: '#000000',
+                    color: branding.charts.axis,
                     font: { size: 12, weight: 'normal' },
                     callback: (value) => `$${value}`
                 }

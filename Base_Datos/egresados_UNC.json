@@ -1,0 +1,37 @@
+{
+    "universidad": "Universidad Nacional de Córdoba (UNC)",
+    "año_referencia": 2025,
+    "fuente": "UNC en Cifras - Universidad Abierta",
+    "facultades": [
+        {
+            "nombre": "Facultad de Psicología",
+            "ingresantes": 3186,
+            "egresados": 725
+        },
+        {
+            "nombre": "Facultad de Arquitectura",
+            "ingresantes": 2624,
+            "egresados": 826
+        },
+        {
+            "nombre": "Facultad de Odontología",
+            "ingresantes": 864,
+            "egresados": 373
+        },
+        {
+            "nombre": "Facultad de Artes",
+            "ingresantes": 1689,
+            "egresados": 301
+        },
+        {
+            "nombre": "Facultad de Ciencias Exactas",
+            "ingresantes": 3145,
+            "egresados": 469
+        },
+        {
+            "nombre": "Facultad de Ciencias Económicas",
+            "ingresantes": 3036,
+            "egresados": 969
+        }
+    ]
+}

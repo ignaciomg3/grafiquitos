@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas & Dashboard de Mercado Laboral Global</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            900: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white; color: black; }
+            .shadow-lg, .shadow { box-shadow: none !important; }
+            .border { border-color: #ccc !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="bg-slate-900 text-white shadow-md no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2.5 bg-blue-600 rounded-xl">
+                    <i class="fa-solid fa-chart-pie text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight">Canvas de Mercado Laboral Global</h1>
+                    <p class="text-xs text-slate-400">Herramienta Estratégica de Talento y Análisis Ocupacional</p>
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="flex items-center gap-2">
+                <button onclick="window.print()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-sm font-medium transition flex items-center gap-2 border border-slate-700">
+                    <i class="fa-solid fa-print text-xs"></i> Exportar / Imprimir
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="bg-white border-b border-slate-200 sticky top-0 z-10 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex overflow-x-auto">
+            <button onclick="switchTab('canvas')" id="tab-canvas" class="tab-btn active px-5 py-3.5 border-b-2 font-medium text-sm flex items-center gap-2 border-blue-600 text-blue-600 whitespace-nowrap">
+                <i class="fa-solid fa-border-all"></i> Canvas de Talento
+            </button>
+            <button onclick="switchTab('matrix')" id="tab-matrix" class="tab-btn px-5 py-3.5 border-b-2 font-medium text-sm flex items-center gap-2 border-transparent text-slate-500 hover:text-slate-700 whitespace-nowrap">
+                <i class="fa-solid fa-chart-scatter"></i> Matriz Oferta/Demanda
+            </button>
+            <button onclick="switchTab('analytics')" id="tab-analytics" class="tab-btn px-5 py-3.5 border-b-2 font-medium text-sm flex items-center gap-2 border-transparent text-slate-500 hover:text-slate-700 whitespace-nowrap">
+                <i class="fa-solid fa-chart-column"></i> Dashboards Comparativos
+            </button>
+            <button onclick="switchTab('table')" id="tab-table" class="tab-btn px-5 py-3.5 border-b-2 font-medium text-sm flex items-center gap-2 border-transparent text-slate-500 hover:text-slate-700 whitespace-nowrap">
+                <i class="fa-solid fa-table-list"></i> Tabla Completa (Top 10)
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+
+        <!-- TAB 1: CANVAS DE TALENTO Y ESTRATEGIA -->
+        <section id="view-canvas" class="space-y-6">
+            
+            <!-- Selector de Puesto & Controles -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 no-print">
+                <div class="w-full md:w-1/2">
+                    <label for="job-selector" class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                        Selecciona un Puesto para Generar el Canvas:
+                    </label>
+                    <select id="job-selector" onchange="loadJobCanvas(this.value)" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 font-medium">
+                        <!-- Populated by JS -->
+                    </select>
+                </div>
+                <div class="flex items-center gap-3 w-full md:w-auto justify-end">
+                    <span id="canvas-shortage-badge" class="px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide">
+                        <!-- Shortage Badge -->
+                    </span>
+                    <button onclick="clearNotes()" class="px-3 py-2 text-xs text-slate-500 hover:text-slate-700 underline">
+                        Limpiar Notas
+                    </button>
+                </div>
+            </div>
+
+            <!-- Canvas Container (9-Block Grid) -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                
+                <!-- Canvas Header -->
+                <div class="border-b border-slate-200 pb-4 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span id="canvas-rank" class="bg-blue-600 text-white text-xs font-black px-2.5 py-1 rounded-md">#1</span>
+                            <h2 id="canvas-title" class="text-2xl font-bold text-slate-900">Trabajador Agrícola y Agropecuario</h2>
+                        </div>
+                        <p id="canvas-sector" class="text-slate-500 text-sm mt-1">Sector: Agricultura y Agroindustria</p>
+                    </div>
+                    <div class="text-left sm:text-right">
+                        <span class="text-xs text-slate-400 block uppercase font-semibold">Tendencia Global</span>
+                        <span id="canvas-trend" class="text-sm font-semibold text-emerald-600">
+                            <i class="fa-solid fa-arrow-trend-up mr-1"></i> Creciente
+                        </span>
+                    </div>
+                </div>
+
+                <!-- The Canvas Grid (3x3 Layout) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
+                    
+                    <!-- Block 1: Diagnóstico de Mercado -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 text-blue-700 font-bold text-xs uppercase tracking-wider mb-2">
+                                <i class="fa-solid fa-scale-balanced"></i> 1. Balanza de Mercado
+                            </div>
+                            <div class="space-y-3 mt-3">
+                                <div class="bg-white p-3 rounded-lg border border-slate-200">
+                                    <span class="text-xs text-slate-500 block">Demanda (Vacantes):</span>
+                                    <span id="canvas-demand" class="text-lg font-bold text-slate-900">30,0 M</span>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg border border-slate-200">
+                                    <span class="text-xs text-slate-500 block">Oferta Estimada:</span>
+                                    <span id="canvas-supply" class="text-lg font-bold text-slate-900">28,5 M</span>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg border border-slate-200">
+                                    <span class="text-xs text-slate-500 block">Ratio Oferta/Demanda:</span>
+                                    <div class="flex items-center justify-between">
+                                        <span id="canvas-ratio" class="text-xl font-extrabold text-blue-600">0.95</span>
+                                        <span id="canvas-ratio-status" class="text-xs px-2 py-0.5 rounded font-semibold bg-amber-100 text-amber-800">
+                                            Déficit Moderado
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Block 2: Requisitos de Formación -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 text-blue-700 font-bold text-xs uppercase tracking-wider mb-2">
+                                <i class="fa-solid fa-graduation-cap"></i> 2. Formación & Requisitos
+                            </div>
+                            <div class="mt-3 space-y-3">
+                                <div>
+                                    <span class="text-xs font-semibold text-slate-500 uppercase">Nivel Educativo:</span>
+                                    <p id="canvas-education" class="text-sm font-medium text-slate-800 mt-0.5">Educación básica / Certificaciones operativas agrícolas</p>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-semibold text-slate-500 uppercase">Experiencia Requerida:</span>
+                                    <p id="canvas-experience" class="text-sm font-medium text-slate-800 mt-0.5">0 a 2 años en labores de campo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Block 3: Valor Económico & Salario -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 text-blue-700 font-bold text-xs uppercase tracking-wider mb-2">
+                                <i class="fa-solid fa-sack-dollar"></i> 3. Compensación Salarial
+                            </div>
+                            <div class="mt-3 bg-white p-4 rounded-lg border border-slate-200">
+                                <span class="text-xs text-slate-500 block">Rango Salarial Global (USD/año):</span>
+                                <span id="canvas-salary" class="text-lg font-bold text-emerald-600 block mt-1">$8.000 - $28.000</span>
+                                <p class="text-xs text-slate-400 mt-2">Sujeto a variaciones regionales entre economías emergentes y desarrolladas.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Block 4: Competencias Clave -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 text-blue-700 font-bold text-xs uppercase tracking-wider mb-2">
+                                <i class="fa-solid fa-key"></i> 4. Competencias Críticas
+                            </div>
+                            <div id="canvas-skills" class="mt-3 flex flex-wrap gap-1.5">
+                                <!-- Skill badges generated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Block 5: Recomendaciones Estratégicas -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-between md:col-span-2">
+                        <div>
+                            <div class="flex items-center gap-2 text-blue-700 font-bold text-xs uppercase tracking-wider mb-2">
+                                <i class="fa-solid fa-lightbulb"></i> 5. Plan de Acción / Recomendación Estratégica
+                            </div>
+                            <p id="canvas-strategy" class="text-sm text-slate-700 mt-2 leading-relaxed bg-white p-3 rounded-lg border border-slate-200">
+                                Tecnificación de procesos, automatización agrícola y mejora de condiciones de trabajo estacional.
+                            </p>
+                        </div>
+                        <div class="mt-3 text-xs text-slate-400 border-t border-slate-200 pt-2 flex justify-between items-center">
+                            <span>Fuentes Oficiales:</span>
+                            <span id="canvas-sources" class="font-medium text-slate-600">OIT & FAO (2025)</span>
+                        </div>
+                    </div>
+
+                    <!-- Block 6: Notas de Planificación del Usuario (Editable) -->
+                    <div class="bg-amber-50/60 p-4 rounded-xl border border-amber-200 md:col-span-3">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-2 text-amber-800 font-bold text-xs uppercase tracking-wider">
+                                <i class="fa-solid fa-pen-to-square"></i> 6. Mis Notas / Hoja de Ruta Personalizada
+                            </div>
+                            <span class="text-[10px] text-amber-700">Se guarda en el navegador</span>
+                        </div>
+                        <textarea id="canvas-notes" oninput="saveNotes()" rows="3" placeholder="Escribe aquí tus observaciones, estrategias corporativas o plan de carrera específico para este puesto..." class="w-full bg-white border border-amber-200 rounded-lg p-2.5 text-sm text-slate-800 focus:ring-amber-500 focus:border-amber-500"></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: MATRIZ DE POSICIONAMIENTO -->
+        <section id="view-matrix" class="space-y-6 hidden">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="mb-4">
+                    <h2 class="text-xl font-bold text-slate-900">Matriz Estratégica: Salario vs. Brecha de Escasez</h2>
+                    <p class="text-xs text-slate-500 mt-1">Posicionamiento de cada puesto según su Índice Oferta/Demanda y Salario Máximo Estimado.</p>
+                </div>
+                
+                <!-- Chart Container -->
+                <div class="relative h-96 w-full">
+                    <canvas id="matrixChart"></canvas>
+                </div>
+
+                <!-- Quadrant Legend -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
+                    <div class="p-3 bg-red-50 rounded-lg border border-red-200">
+                        <span class="text-xs font-bold text-red-700 block">Alta Escasez / Alto Salario</span>
+                        <p class="text-[11px] text-red-600 mt-0.5">IA, Ciberseguridad, Renovables. Talento crítico y altamente costoso.</p>
+                    </div>
+                    <div class="p-3 bg-amber-50 rounded-lg border border-amber-200">
+                        <span class="text-xs font-bold text-amber-700 block">Alta Escasez / Salario Medio</span>
+                        <p class="text-[11px] text-amber-600 mt-0.5">Enfermería, Software Senior. Alta urgencia estructural.</p>
+                    </div>
+                    <div class="p-3 bg-blue-50 rounded-lg border border-blue-200">
+                        <span class="text-xs font-bold text-blue-700 block">Volumen Masivo / Equilibrio</span>
+                        <p class="text-[11px] text-blue-600 mt-0.5">Agrícola, Construcción, Logística. Gran volumen de personas.</p>
+                    </div>
+                    <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-200">
+                        <span class="text-xs font-bold text-emerald-700 block">Superávit General</span>
+                        <p class="text-[11px] text-emerald-600 mt-0.5">Ventas, Finanzas. Abundancia de perfiles pero con nichos técnicos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: DASHBOARDS COMPARATIVOS -->
+        <section id="view-analytics" class="space-y-6 hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- Chart 1: Demanda vs Oferta -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <h3 class="text-base font-bold text-slate-900 mb-4">Volumen de Demanda vs. Oferta (Millones)</h3>
+                    <div class="h-80 relative">
+                        <canvas id="volumeChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Chart 2: Índice Oferta / Demanda -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <h3 class="text-base font-bold text-slate-900 mb-4">Índice Oferta / Demanda (&lt;1 = Escasez)</h3>
+                    <div class="h-80 relative">
+                        <canvas id="ratioChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAB 4: TABLA COMPLETA -->
+        <section id="view-table" class="space-y-6 hidden">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-5 border-b border-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-900">Ranking Top 10 Mercado Laboral Global</h2>
+                        <p class="text-xs text-slate-500">Integración de todos los sectores compitiendo en una única clasificación</p>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-600">
+                        <thead class="bg-slate-50 text-slate-700 uppercase font-semibold border-b border-slate-200">
+                            <tr>
+                                <th class="px-4 py-3">#</th>
+                                <th class="px-4 py-3">Puesto</th>
+                                <th class="px-4 py-3">Sector</th>
+                                <th class="px-4 py-3 text-right">Demanda</th>
+                                <th class="px-4 py-3 text-right">Oferta</th>
+                                <th class="px-4 py-3 text-center">Ratio O/D</th>
+                                <th class="px-4 py-3">Salario (USD/año)</th>
+                                <th class="px-4 py-3">Tendencia</th>
+                            </tr>
+                        </thead>
+                        <tbody id="full-table-body" class="divide-y divide-slate-200 font-medium">
+                            <!-- JS Populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 mt-auto no-print">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
+            Canvas de Mercado Laboral Global &bull; Basado en datos OIT, WEF, OMS, IRU, IRENA y ManpowerGroup (2025/2026).
+        </div>
+    </footer>
+
+    <!-- JavaScript Data and Application Logic -->
+    <script>
+        // Full Dataset
+        const jobsData = [
+            {
+                rank: 1,
+                title: "Trabajador Agrícola y Agropecuario",
+                sector: "Agricultura y Agroindustria",
+                demand: "30,0 M",
+                demandVal: 30.0,
+                supply: "28,5 M",
+                supplyVal: 28.5,
+                ratio: 0.95,
+                salary: "$8.000 - $28.000",
+                minSalary: 8000,
+                maxSalary: 28000,
+                trend: "Estable",
+                skills: ["Manejo de Maquinaria", "Técnicas Agrícolas", "Cosecha", "Bioseguridad Field Ops"],
+                education: "Educación básica / Certificaciones operativas agrícolas",
+                experience: "0 a 2 años",
+                sources: "OIT & FAO (2025)",
+                shortageLevel: "Escasez Estacional",
+                shortageBadgeClass: "bg-blue-100 text-blue-800",
+                strategy: "Tecnificación de procesos, mecanización del campo y mejores condiciones laborales estacionales."
+            },
+            {
+                rank: 2,
+                title: "Operario de Construcción y Oficios Calificados",
+                sector: "Construcción e Infraestructura",
+                demand: "24,0 M",
+                demandVal: 24.0,
+                supply: "21,6 M",
+                supplyVal: 21.6,
+                ratio: 0.90,
+                salary: "$18.000 - $48.000",
+                minSalary: 18000,
+                maxSalary: 48000,
+                trend: "Creciente",
+                skills: ["Electricidad", "Albañilería", "Soldadura", "Lectura de Planos", "Seguridad OSHA"],
+                education: "Formación técnica / Oficios / Certificaciones",
+                experience: "1 a 3 años",
+                sources: "OIT & ManpowerGroup (2025)",
+                shortageLevel: "Déficit Cualificado",
+                shortageBadgeClass: "bg-amber-100 text-amber-800",
+                strategy: "Aceleración de programas de capacitación técnica y formación dual en obra."
+            },
+            {
+                rank: 3,
+                title: "Conductor de Transporte y Reparto",
+                sector: "Logística y Transporte",
+                demand: "22,5 M",
+                demandVal: 22.5,
+                supply: "21,0 M",
+                supplyVal: 21.0,
+                ratio: 0.93,
+                salary: "$15.000 - $42.000",
+                minSalary: 15000,
+                maxSalary: 42000,
+                trend: "Creciente",
+                skills: ["Licencia Comercial CDL", "Navegación GPS", "Logística de Milla Final", "Seguridad Vial"],
+                education: "Licencia comercial de conducir (CDL o equivalente)",
+                experience: "1 a 2 años",
+                sources: "IRU & OIT (2025)",
+                shortageLevel: "Déficit de Larga Distancia",
+                shortageBadgeClass: "bg-amber-100 text-amber-800",
+                strategy: "Financiación de licencias para jóvenes y digitalización de rutas."
+            },
+            {
+                rank: 4,
+                title: "Representante de Ventas y Desarrollo Comercial",
+                sector: "Comercio y Ventas",
+                demand: "18,0 M",
+                demandVal: 18.0,
+                supply: "19,5 M",
+                supplyVal: 19.5,
+                ratio: 1.08,
+                salary: "$22.000 - $65.000",
+                minSalary: 22000,
+                maxSalary: 65000,
+                trend: "Estable",
+                skills: ["Negociación B2B/B2C", "Gestión de CRM", "Venta Consultiva", "Prospección Digital"],
+                education: "Secundaria completa / Licenciaturas comerciales",
+                experience: "1 a 3 años",
+                sources: "LinkedIn Graph & Gartner (2025)",
+                shortageLevel: "Superávit General",
+                shortageBadgeClass: "bg-emerald-100 text-emerald-800",
+                strategy: "Up-skilling hacia ventas técnicas B2B especializadas e integración con CRM de IA."
+            },
+            {
+                rank: 5,
+                title: "Desarrollador de Software y Aplicaciones",
+                sector: "Tecnología e IT",
+                demand: "15,2 M",
+                demandVal: 15.2,
+                supply: "11,5 M",
+                supplyVal: 11.5,
+                ratio: 0.76,
+                salary: "$45.000 - $110.000",
+                minSalary: 45000,
+                maxSalary: 110000,
+                trend: "Creciente",
+                skills: ["Python", "JavaScript/TypeScript", "Arquitectura Cloud", "Git & CI/CD", "APIs"],
+                education: "Ingeniería en Sistemas / Bootcamps / Autodidacta",
+                experience: "2 a 5 años",
+                sources: "WEF Future of Jobs & GitHub (2025)",
+                shortageLevel: "Escasez Senior",
+                shortageBadgeClass: "bg-amber-100 text-amber-800",
+                strategy: "Modelos de trabajo remoto global y desarrollo continuo de talento middle-to-senior."
+            },
+            {
+                rank: 6,
+                title: "Personal de Enfermería y Cuidados Médicos",
+                sector: "Salud y Servicios Sociales",
+                demand: "13,5 M",
+                demandVal: 13.5,
+                supply: "9,8 M",
+                supplyVal: 9.8,
+                ratio: 0.73,
+                salary: "$28.000 - $75.000",
+                minSalary: 28000,
+                maxSalary: 75000,
+                trend: "Creciente",
+                skills: ["Cuidados Clínicos", "Atención de Urgencias", "Farmacología", "Empatía", "Soporte Vital"],
+                education: "Grado Universitario en Enfermería + Licencia Sanitaria",
+                experience: "1 a 3 años",
+                sources: "OMS & OIT (2025)",
+                shortageLevel: "Escasez Severa Global",
+                shortageBadgeClass: "bg-red-100 text-red-800",
+                strategy: "Aumento de plazas universitarias, becas públicas e incentivos a la migración cualificada."
+            },
+            {
+                rank: 7,
+                title: "Especialista en Inteligencia Artificial y Datos",
+                sector: "Tecnología e IT / Transversal",
+                demand: "8,8 M",
+                demandVal: 8.8,
+                supply: "3,9 M",
+                supplyVal: 3.9,
+                ratio: 0.44,
+                salary: "$60.000 - $140.000",
+                minSalary: 60000,
+                maxSalary: 140000,
+                trend: "Creciente Acelerado",
+                skills: ["LLMs", "Machine Learning", "Python/PyTorch", "MLOps", "SQL/Big Data"],
+                education: "Posgrado/Grado en Matemáticas, Datos o Computación",
+                experience: "2 a 4 años",
+                sources: "WEF & Coursera Report (2025)",
+                shortageLevel: "Escasez Crítica Exponencial",
+                shortageBadgeClass: "bg-red-100 text-red-800",
+                strategy: "Alianzas corporativas con universidades y atracción agresiva de talento STEM."
+            },
+            {
+                rank: 8,
+                title: "Especialista en Finanzas, Contabilidad y Riesgo",
+                sector: "Administración y Finanzas",
+                demand: "7,5 M",
+                demandVal: 7.5,
+                supply: "7,2 M",
+                supplyVal: 7.2,
+                ratio: 0.96,
+                salary: "$35.000 - $85.000",
+                minSalary: 35000,
+                maxSalary: 85000,
+                trend: "Estable",
+                skills: ["Análisis Financiero", "Normas NIIF/GAAP", "Auditoría Digital", "Gestión de Riesgo"],
+                education: "Licenciatura en Contabilidad/Finanzas + CPA/CFA",
+                experience: "2 a 4 años",
+                sources: "Instituto de Contadores Públicos (2025)",
+                shortageLevel: "Equilibrio Relativo",
+                shortageBadgeClass: "bg-emerald-100 text-emerald-800",
+                strategy: "Reorientación del perfil contable hacia la analítica predictiva de datos y compliance digital."
+            },
+            {
+                rank: 9,
+                title: "Especialista en Ciberseguridad",
+                sector: "Tecnología e IT / Finanzas",
+                demand: "5,5 M",
+                demandVal: 5.5,
+                supply: "2,1 M",
+                supplyVal: 2.1,
+                ratio: 0.38,
+                salary: "$55.000 - $120.000",
+                minSalary: 55000,
+                maxSalary: 120000,
+                trend: "Creciente",
+                skills: ["Ethical Hacking", "Seguridad Cloud", "SIEM/SOC", "CISSP", "Respuesta a Incidentes"],
+                education: "Ingeniería Informática / Certificaciones (CISSP, CEH)",
+                experience: "3 a 5 años",
+                sources: "ISC² & WEF (2025)",
+                shortageLevel: "Escasez Extrema",
+                shortageBadgeClass: "bg-red-100 text-red-800",
+                strategy: "Programas de reconversión interna (reskilling) desde redes/sistemas e incentivos de retención."
+            },
+            {
+                rank: 10,
+                title: "Ingeniero de Energías Renovables y Sostenibilidad",
+                sector: "Energía y Medio Ambiente",
+                demand: "4,2 M",
+                demandVal: 4.2,
+                supply: "2,3 M",
+                supplyVal: 2.3,
+                ratio: 0.55,
+                salary: "$48.000 - $95.000",
+                minSalary: 48000,
+                maxSalary: 95000,
+                trend: "Creciente",
+                skills: ["Sistemas Solares/Eólicos", "Reportes ESG", "Eficiencia Energética", "Modelado CAD"],
+                education: "Ingeniería Eléctrica, Mecánica, Ambiental o Energías Renovables",
+                experience: "2 a 4 años",
+                sources: "IRENA & OIT Green Jobs (2025)",
+                shortageLevel: "Escasez Crítica",
+                shortageBadgeClass: "bg-red-100 text-red-800",
+                strategy: "Transición asistida para ingenieros del sector fósil/tradicional hacia tecnologías limpias."
+            }
+        ];
+
+        let currentJobIndex = 0;
+        let matrixChartObj = null;
+        let volumeChartObj = null;
+        let ratioChartObj = null;
+
+        // Initialize App
+        window.addEventListener('DOMContentLoaded', () => {
+            populateSelector();
+            loadJobCanvas(0);
+            renderFullTable();
+            initCharts();
+        });
+
+        // Populate Selector Options
+        function populateSelector() {
+            const selector = document.getElementById('job-selector');
+            selector.innerHTML = jobsData.map((job, idx) => 
+                `<option value="${idx}">#${job.rank} - ${job.title} (${job.sector})</option>`
+            ).join('');
+        }
+
+        // Load Canvas for Selected Job
+        function loadJobCanvas(index) {
+            currentJobIndex = parseInt(index);
+            const job = jobsData[currentJobIndex];
+
+            document.getElementById('canvas-rank').innerText = `#${job.rank}`;
+            document.getElementById('canvas-title').innerText = job.title;
+            document.getElementById('canvas-sector').innerText = `Sector: ${job.sector}`;
+            document.getElementById('canvas-trend').innerHTML = `<i class="fa-solid fa-arrow-trend-up mr-1"></i> ${job.trend}`;
+            
+            document.getElementById('canvas-demand').innerText = job.demand;
+            document.getElementById('canvas-supply').innerText = job.supply;
+            document.getElementById('canvas-ratio').innerText = job.ratio.toFixed(2);
+            
+            const statusEl = document.getElementById('canvas-ratio-status');
+            if(job.ratio < 0.6) {
+                statusEl.innerText = "Escasez Extrema";
+                statusEl.className = "text-xs px-2 py-0.5 rounded font-semibold bg-red-100 text-red-800";
+            } else if(job.ratio < 0.9) {
+                statusEl.innerText = "Escasez Significativa";
+                statusEl.className = "text-xs px-2 py-0.5 rounded font-semibold bg-amber-100 text-amber-800";
+            } else if(job.ratio <= 1.0) {
+                statusEl.innerText = "Equilibrio Ajustado";
+                statusEl.className = "text-xs px-2 py-0.5 rounded font-semibold bg-blue-100 text-blue-800";
+            } else {
+                statusEl.innerText = "Superávit";
+                statusEl.className = "text-xs px-2 py-0.5 rounded font-semibold bg-emerald-100 text-emerald-800";
+            }
+
+            document.getElementById('canvas-education').innerText = job.education;
+            document.getElementById('canvas-experience').innerText = job.experience;
+            document.getElementById('canvas-salary').innerText = `${job.salary} USD/año`;
+            
+            // Skills Badges
+            const skillsContainer = document.getElementById('canvas-skills');
+            skillsContainer.innerHTML = job.skills.map(s => 
+                `<span class="bg-white border border-slate-300 text-slate-700 text-xs px-2.5 py-1 rounded-md font-medium shadow-2xs">${s}</span>`
+            ).join('');
+
+            document.getElementById('canvas-strategy').innerText = job.strategy;
+            document.getElementById('canvas-sources').innerText = job.sources;
+
+            // Shortage Badge Top Right
+            const badgeEl = document.getElementById('canvas-shortage-badge');
+            badgeEl.innerText = job.shortageLevel;
+            badgeEl.className = `px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide ${job.shortageBadgeClass}`;
+
+            // Load saved user notes
+            const savedNote = localStorage.getItem(`note_job_${job.rank}`) || '';
+            document.getElementById('canvas-notes').value = savedNote;
+        }
+
+        // Save User Notes
+        function saveNotes() {
+            const job = jobsData[currentJobIndex];
+            const val = document.getElementById('canvas-notes').value;
+            localStorage.setItem(`note_job_${job.rank}`, val);
+        }
+
+        function clearNotes() {
+            document.getElementById('canvas-notes').value = '';
+            saveNotes();
+        }
+
+        // Switch Tabs
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('border-blue-600', 'text-blue-600');
+                btn.classList.add('border-transparent', 'text-slate-500');
+            });
+
+            document.getElementById(`tab-${tabName}`).classList.add('border-blue-600', 'text-blue-600');
+            document.getElementById(`tab-${tabName}`).classList.remove('border-transparent', 'text-slate-500');
+
+            ['canvas', 'matrix', 'analytics', 'table'].forEach(v => {
+                document.getElementById(`view-${v}`).classList.add('hidden');
+            });
+            document.getElementById(`view-${tabName}`).classList.remove('hidden');
+
+            if(tabName === 'matrix' && matrixChartObj) matrixChartObj.update();
+            if(tabName === 'analytics' && volumeChartObj) {
+                volumeChartObj.update();
+                ratioChartObj.update();
+            }
+        }
+
+        // Render Full Table
+        function renderFullTable() {
+            const tbody = document.getElementById('full-table-body');
+            tbody.innerHTML = jobsData.map(j => `
+                <tr class="hover:bg-slate-50 transition">
+                    <td class="px-4 py-3 font-bold text-slate-900">${j.rank}</td>
+                    <td class="px-4 py-3 font-semibold text-blue-700">${j.title}</td>
+                    <td class="px-4 py-3 text-slate-600">${j.sector}</td>
+                    <td class="px-4 py-3 text-right font-semibold">${j.demand}</td>
+                    <td class="px-4 py-3 text-right">${j.supply}</td>
+                    <td class="px-4 py-3 text-center">
+                        <span class="px-2 py-0.5 rounded text-xs font-bold ${j.ratio < 0.6 ? 'bg-red-100 text-red-800' : j.ratio < 0.9 ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">
+                            ${j.ratio.toFixed(2)}
+                        </span>
+                    </td>
+                    <td class="px-4 py-3 font-medium text-emerald-700">${j.salary}</td>
+                    <td class="px-4 py-3">
+                        <span class="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-700">${j.trend}</span>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Initialize Chart.js Graphs
+        function initCharts() {
+            // 1. Matrix Scatter Chart
+            const ctxMatrix = document.getElementById('matrixChart').getContext('2d');
+            matrixChartObj = new Chart(ctxMatrix, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Puestos de Trabajo (O/D vs Salario Max)',
+                        data: jobsData.map(j => ({
+                            x: j.ratio,
+                            y: j.maxSalary,
+                            label: j.title
+                        })),
+                        backgroundColor: jobsData.map(j => j.ratio < 0.6 ? '#ef4444' : j.ratio < 0.9 ? '#f59e0b' : '#10b981'),
+                        pointRadius: 9,
+                        pointHoverRadius: 12
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(ctx) {
+                                    const item = jobsData[ctx.dataIndex];
+                                    return `${item.title}: Ratio O/D = ${item.ratio}, Max Salario = $${item.maxSalary.toLocaleString()} USD`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'Índice Oferta / Demanda (< 1.0 indica Escasez)', font: { weight: 'bold' } },
+                            min: 0.2,
+                            max: 1.2
+                        },
+                        y: {
+                            title: { display: true, text: 'Salario Máximo Anual Estimado (USD)', font: { weight: 'bold' } },
+                            min: 0,
+                            max: 160000
+                        }
+                    }
+                }
+            });
+
+            // 2. Volume Chart (Demand vs Supply)
+            const ctxVol = document.getElementById('volumeChart').getContext('2d');
+            volumeChartObj = new Chart(ctxVol, {
+                type: 'bar',
+                data: {
+                    labels: jobsData.map(j => j.title.split(' ')[0] + ' ' + (j.title.split(' ')[1] || '')),
+                    datasets: [
+                        {
+                            label: 'Demanda (Millones)',
+                            data: jobsData.map(j => j.demandVal),
+                            backgroundColor: '#2563eb'
+                        },
+                        {
+                            label: 'Oferta (Millones)',
+                            data: jobsData.map(j => j.supplyVal),
+                            backgroundColor: '#94a3b8'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { title: { display: true, text: 'Millones de Puestos/Personas' } }
+                    }
+                }
+            });
+
+            // 3. Ratio Chart
+            const ctxRatio = document.getElementById('ratioChart').getContext('2d');
+            ratioChartObj = new Chart(ctxRatio, {
+                type: 'bar',
+                data: {
+                    labels: jobsData.map(j => j.title.split(' ')[0] + ' ' + (j.title.split(' ')[1] || '')),
+                    datasets: [{
+                        label: 'Índice Oferta/Demanda',
+                        data: jobsData.map(j => j.ratio),
+                        backgroundColor: jobsData.map(j => j.ratio < 0.6 ? '#ef4444' : j.ratio < 0.9 ? '#f59e0b' : '#10b981')
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: { 
+                            title: { display: true, text: 'Ratio (Línea en 1.0 representa equilibrio perfect)' },
+                            min: 0,
+                            max: 1.3
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

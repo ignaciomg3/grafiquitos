@@ -1,18 +1,19 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import branding from '../../../theme/branding';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const bloques = [
-    { label: 'La Libertad Avanza', bancas: 95, color: '#7c3aed', softColor: '#ede9fe' },
-    { label: 'Fuerza Patria', bancas: 93, color: '#0284c7', softColor: '#e0f2fe' },
-    { label: 'PRO / Fuerza Cambio', bancas: 22, color: '#f59e0b', softColor: '#fef3c7' },
-    { label: 'Unidos (UCR/Fed.)', bancas: 22, color: '#dc2626', softColor: '#fee2e2' },
-    { label: 'Innovacion Federal', bancas: 9, color: '#0f766e', softColor: '#ccfbf1' },
-    { label: 'MID / Coherencia', bancas: 7, color: '#1e3a8a', softColor: '#dbeafe' },
-    { label: 'FIT-U', bancas: 4, color: '#b91c1c', softColor: '#fee2e2' },
-    { label: 'Otros Provinciales', bancas: 5, color: '#64748b', softColor: '#e2e8f0' }
+    { label: 'La Libertad Avanza', bancas: 95, color: branding.charts.politica.bloques[0], softColor: branding.charts.politica.softBloques[0] },
+    { label: 'Fuerza Patria', bancas: 93, color: branding.charts.politica.bloques[2], softColor: branding.charts.politica.softBloques[2] },
+    { label: 'PRO / Fuerza Cambio', bancas: 22, color: branding.charts.politica.bloques[1], softColor: branding.charts.politica.softBloques[1] },
+    { label: 'Unidos (UCR/Fed.)', bancas: 22, color: branding.charts.politica.bloques[4], softColor: branding.charts.politica.softBloques[4] },
+    { label: 'Innovacion Federal', bancas: 9, color: branding.charts.politica.bloques[5], softColor: branding.charts.politica.softBloques[5] },
+    { label: 'MID / Coherencia', bancas: 7, color: branding.charts.politica.bloques[7], softColor: branding.charts.politica.softBloques[7] },
+    { label: 'FIT-U', bancas: 4, color: branding.charts.politica.bloques[6], softColor: branding.charts.politica.softBloques[6] },
+    { label: 'Otros Provinciales', bancas: 5, color: branding.charts.politica.bloques[3], softColor: branding.charts.politica.softBloques[3] }
 ];
 
 const totalBancas = bloques.reduce((sum, bloque) => sum + bloque.bancas, 0);
@@ -37,13 +38,13 @@ const centerLabelPlugin = {
         ctx.save();
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillStyle = '#0f172a';
+        ctx.fillStyle = branding.colors.text.primary;
         ctx.font = '800 22px Inter, sans-serif';
         ctx.fillText(totalBancas, x, y - 10);
-        ctx.fillStyle = '#64748b';
+        ctx.fillStyle = branding.colors.text.muted;
         ctx.font = '700 11px Inter, sans-serif';
         ctx.fillText('bancas', x, y + 10);
-        ctx.fillStyle = '#7c3aed';
+        ctx.fillStyle = branding.charts.politica.bloques[0];
         ctx.font = '700 10px Inter, sans-serif';
         ctx.fillText('Diputados', x, y + 28);
         ctx.restore();
@@ -55,10 +56,10 @@ const data = {
     datasets: [{
         data: bloques.map((bloque) => bloque.bancas),
         backgroundColor: bloques.map((bloque) => bloque.color),
-        borderColor: '#f8fafc',
+        borderColor: branding.colors.text.inverse,
         borderRadius: 5,
         borderWidth: 3,
-        hoverBorderColor: '#ffffff',
+        hoverBorderColor: branding.charts.white,
         hoverOffset: 12,
         spacing: 2
     }]
@@ -74,8 +75,8 @@ const options = {
             display: false
         },
         tooltip: {
-            backgroundColor: 'rgba(15, 23, 42, 0.95)',
-            borderColor: 'rgba(148, 163, 184, 0.35)',
+            backgroundColor: branding.charts.tooltipBg,
+            borderColor: branding.charts.tooltipBorder,
             borderWidth: 1,
             displayColors: false,
             titleFont: { size: 13, weight: 'bold' },

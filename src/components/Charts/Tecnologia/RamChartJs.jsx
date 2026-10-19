@@ -12,6 +12,7 @@ import {
     defaults
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import branding from '../../../theme/branding';
 
 ChartJS.register(
     CategoryScale,
@@ -50,13 +51,13 @@ export default function RamChartJs() {
                 label: 'RAM USD',
                 data: [4.50, 5.15, 3.90, 2.60, 3.10, 7.50, 12.50],
                 backgroundColor: 'rgba(0, 255, 198, 0.1)',
-                borderColor: "#00FFC6",
+                borderColor: branding.charts.tecnologia.ram,
                 borderWidth: 3,
                 tension: 0.3,
                 fill: true,
                 pointRadius: 4,
-                pointBackgroundColor: "#00FFC6",
-                pointBorderColor: "#ffffff",
+                pointBackgroundColor: branding.charts.tecnologia.ram,
+                pointBorderColor: branding.charts.white,
                 pointHoverRadius: 7
             }
         ]
@@ -70,9 +71,9 @@ export default function RamChartJs() {
                 display: false
             },
             tooltip: {
-                backgroundColor: "rgba(17, 17, 17, 0.9)",
-                titleColor: "#00FFC6",
-                bodyColor: "#fff",
+                backgroundColor: branding.charts.tecnologia.ramDarkBg,
+                titleColor: branding.charts.tecnologia.ram,
+                bodyColor: branding.charts.white,
                 padding: 12,
                 cornerRadius: 8,
                 titleFont: { family: "'Aldrich', sans-serif" },

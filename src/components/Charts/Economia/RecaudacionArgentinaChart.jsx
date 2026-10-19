@@ -7,6 +7,7 @@ import {
     Legend
 } from 'chart.js';
 import recaudacionAnualArgentina from '../../../../Base_Datos/RecaudacionAnualArgentina.json';
+import branding from '../../../theme/branding';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -54,8 +55,8 @@ const getEmoji = (label) => {
     return '🔸';
 };
 
-const chartColors = ['#0f766e', '#2563eb', '#dc2626', '#f59e0b', '#7c3aed', '#475569'];
-const softChartColors = ['#ccfbf1', '#dbeafe', '#fee2e2', '#fef3c7', '#ede9fe', '#e2e8f0'];
+const chartColors = branding.charts.series;
+const softChartColors = branding.charts.softSeries;
 
 const centerLabelPlugin = {
     id: 'recaudacionCenterLabel',
@@ -73,15 +74,15 @@ const centerLabelPlugin = {
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
 
-        ctx.fillStyle = '#0f172a';
+        ctx.fillStyle = branding.colors.text.primary;
         ctx.font = '700 26px Inter, sans-serif';
         ctx.fillText(`${itemPrincipal.porcentaje}%`, x, y - 14);
 
-        ctx.fillStyle = '#64748b';
+        ctx.fillStyle = branding.colors.text.muted;
         ctx.font = '600 12px Inter, sans-serif';
         ctx.fillText('Principal', x, y + 10);
 
-        ctx.fillStyle = '#0f766e';
+        ctx.fillStyle = branding.colors.brand.primary;
         ctx.font = '700 12px Inter, sans-serif';
         ctx.fillText(formatBillions(totalRecaudacionUsd), x, y + 30);
         ctx.restore();
@@ -94,10 +95,10 @@ const chartData = {
         {
             data: detallesRecaudacionAnual.map((detalle) => detalle.porcentaje),
             backgroundColor: chartColors,
-            borderColor: '#f8fafc',
+            borderColor: branding.colors.text.inverse,
             borderRadius: 6,
             borderWidth: 4,
-            hoverBorderColor: '#ffffff',
+            hoverBorderColor: branding.charts.white,
             hoverOffset: 14,
             spacing: 3
         }
@@ -117,8 +118,8 @@ const chartOptions = {
             display: false
         },
         tooltip: {
-            backgroundColor: 'rgba(15, 23, 42, 0.95)',
-            borderColor: 'rgba(148, 163, 184, 0.35)',
+            backgroundColor: branding.charts.tooltipBg,
+            borderColor: branding.charts.tooltipBorder,
             borderWidth: 1,
             displayColors: false,
             titleFont: {
