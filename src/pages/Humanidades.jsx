@@ -2,6 +2,7 @@ import React from 'react';
 import EsperanzaVidaChart from '../components/Charts/Humanidades/EsperanzaVidaChart';
 import EgresadosUNCChart from '../components/Charts/Humanidades/EgresadosUNCChart';
 import IngenieriasUNCChart, { ingenieriasUNC } from '../components/Charts/Humanidades/IngenieriasUNCChart';
+import IngenieriasComparativaChart from '../components/Charts/Humanidades/IngenieriasComparativaChart';
 import egresadosUNCData from '../../Base_Datos/egresados_UNC.json';
 
 export default function Humanidades() {
@@ -61,6 +62,10 @@ export default function Humanidades() {
                     </p>
 
                     <IngenieriasUNCChart />
+                </section>
+
+                <section className="brand-card rounded-2xl shadow-sm p-4 md:p-8">
+                    <IngenieriasComparativaChart />
                 </section>
             </div>
 
