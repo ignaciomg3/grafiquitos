@@ -38,7 +38,7 @@ function getBarColor(percentage) {
 
 export default function IngenieriasComparativaChart() {
     return (
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-3xl">
             <div className="mb-8 text-center">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: '#0080d0' }}>
                     Indicador comparativo UNC
@@ -83,7 +83,7 @@ export default function IngenieriasComparativaChart() {
                                 />
                             </div>
 
-                            <p className="text-right text-sm font-extrabold tabular-nums sm:text-base" style={{ color: '#0f172a' }}>
+                            <p className="text-left text-sm font-extrabold tabular-nums sm:text-base" style={{ color: '#0f172a' }}>
                                 {percentageFormat.format(percentage)}%
                             </p>
                         </div>

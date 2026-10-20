@@ -9,8 +9,6 @@ const dataAreas = [
     { label: 'Mercado', path: '/informe-mercado', icon: 'fa-magnifying-glass-chart', color: '#1d4ed8' }
 ];
 
-const signalBars = [36, 58, 44, 72, 64, 86, 53, 78, 69, 92, 61, 84];
-
 export default function Inicio() {
     return (
         <div className="home-shell w-full min-h-[calc(100vh-9rem)]">
@@ -37,30 +35,6 @@ export default function Inicio() {
                         </div>
                     </div>
 
-                    <div className="home-monitor" aria-label="Panel de actividad de datos">
-                        <div className="monitor-header">
-                            <div>
-                                <span>Actividad</span>
-                                <strong>Actualizando</strong>
-                            </div>
-                            <span className="monitor-time">live</span>
-                        </div>
-                        <div className="signal-chart" aria-hidden="true">
-                            {signalBars.map((height, index) => (
-                                <span
-                                    key={height + index}
-                                    style={{
-                                        height: `${height}%`,
-                                        animationDelay: `${index * 90}ms`
-                                    }}
-                                ></span>
-                            ))}
-                        </div>
-                        <div className="monitor-footer">
-                            <span>Paneles listos</span>
-                            <strong>18</strong>
-                        </div>
-                    </div>
                 </div>
             </section>
 
